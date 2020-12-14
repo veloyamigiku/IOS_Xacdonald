@@ -13,6 +13,7 @@
 		38B7AEFD25875B43003433A5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38B7AEFB25875B43003433A5 /* Main.storyboard */; };
 		38B7AEFF25875B44003433A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38B7AEFE25875B44003433A5 /* Assets.xcassets */; };
 		38B7AF0225875B44003433A5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38B7AF0025875B44003433A5 /* LaunchScreen.storyboard */; };
+		CC770702EE1F7E758448A8CE /* Pods_IOS_Xacdonald.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E5D2D40CF69EAF946539975 /* Pods_IOS_Xacdonald.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,9 @@
 		38B7AEFE25875B44003433A5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		38B7AF0125875B44003433A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		38B7AF0325875B44003433A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5E5D2D40CF69EAF946539975 /* Pods_IOS_Xacdonald.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IOS_Xacdonald.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB47D874887A03B9FB9D334C /* Pods-IOS_Xacdonald.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IOS_Xacdonald.release.xcconfig"; path = "Target Support Files/Pods-IOS_Xacdonald/Pods-IOS_Xacdonald.release.xcconfig"; sourceTree = "<group>"; };
+		E01A04DCB6ACBBDC5633A901 /* Pods-IOS_Xacdonald.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IOS_Xacdonald.debug.xcconfig"; path = "Target Support Files/Pods-IOS_Xacdonald/Pods-IOS_Xacdonald.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +35,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC770702EE1F7E758448A8CE /* Pods_IOS_Xacdonald.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		31AB571F5F23021DA1A42D25 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5E5D2D40CF69EAF946539975 /* Pods_IOS_Xacdonald.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3337CF36E7B1B1806C3FD26B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E01A04DCB6ACBBDC5633A901 /* Pods-IOS_Xacdonald.debug.xcconfig */,
+				AB47D874887A03B9FB9D334C /* Pods-IOS_Xacdonald.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		38B7AEE925875B43003433A5 = {
 			isa = PBXGroup;
 			children = (
 				38B7AEF425875B43003433A5 /* IOS_Xacdonald */,
 				38B7AEF325875B43003433A5 /* Products */,
+				3337CF36E7B1B1806C3FD26B /* Pods */,
+				31AB571F5F23021DA1A42D25 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -74,9 +99,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 38B7AF0625875B44003433A5 /* Build configuration list for PBXNativeTarget "IOS_Xacdonald" */;
 			buildPhases = (
+				A8F155D9243EB5828B7065C4 /* [CP] Check Pods Manifest.lock */,
 				38B7AEEE25875B43003433A5 /* Sources */,
 				38B7AEEF25875B43003433A5 /* Frameworks */,
 				38B7AEF025875B43003433A5 /* Resources */,
+				6B2E78063FFFA09493C846E0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -132,6 +159,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6B2E78063FFFA09493C846E0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-IOS_Xacdonald/Pods-IOS_Xacdonald-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-IOS_Xacdonald/Pods-IOS_Xacdonald-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-IOS_Xacdonald/Pods-IOS_Xacdonald-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A8F155D9243EB5828B7065C4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-IOS_Xacdonald-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		38B7AEEE25875B43003433A5 /* Sources */ = {
@@ -282,6 +351,7 @@
 		};
 		38B7AF0725875B44003433A5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E01A04DCB6ACBBDC5633A901 /* Pods-IOS_Xacdonald.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -299,6 +369,7 @@
 		};
 		38B7AF0825875B44003433A5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AB47D874887A03B9FB9D334C /* Pods-IOS_Xacdonald.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
