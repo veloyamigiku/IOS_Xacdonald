@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  IOS_Xacdonald
 //
-//  Created by xda-yoshioka on 2020/12/14.
+//  Created by velo.yamigiku on 2020/12/14.
 //  Copyright © 2020 velo.yamigiku. All rights reserved.
 //
 
