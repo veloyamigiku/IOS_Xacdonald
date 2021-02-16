@@ -7,8 +7,12 @@
 //
 
 import UIKit
+import RxSwift
 
-class HomeViewController: UIViewController, UICollectionViewDataSource {
+class HomeViewController: UIViewController, UITableViewDataSource {
+    
+    private var disposeBag: DisposeBag!
+    private var tableView: UITableView!
     
     private let dummyItems: [Int] = [
         1,
@@ -26,29 +30,39 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
         super.viewDidLoad()
 
         let salg = self.view.safeAreaLayoutGuide
-        let cvfl = UICollectionViewFlowLayout()
-        // コレクションビューのスクロール方向を垂直に設定する。
-        cvfl.scrollDirection = .vertical
-        // スクロール方向の間隔を設定する。
-        cvfl.minimumLineSpacing = 10
-        // コレクションビューのアイテムサイズを設定する。
-        // アイテムサイズは縦・横両方とも画面の幅に設定する。
-        cvfl.itemSize = CGSize(
-            width: self.view.frame.size.width,
-            height: self.view.frame.size.width)
-        // コレクションビューを作成・配置する。
-        let collectionView = UICollectionView(
-            frame: CGRect.zero,
-            collectionViewLayout: cvfl)
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.dataSource = self
-        collectionView.register(HomeCollectionViewCell.self, forCellWithReuseIdentifier: "HomeCollectionViewCell")
-        collectionView.backgroundColor = .white
-        self.view.addSubview(collectionView)
-        collectionView.topAnchor.constraint(equalTo: salg.topAnchor, constant: 0).isActive = true
-        collectionView.leadingAnchor.constraint(equalTo: salg.leadingAnchor, constant: 0).isActive = true
-        collectionView.trailingAnchor.constraint(equalTo: salg.trailingAnchor, constant: 0).isActive = true
-        collectionView.bottomAnchor.constraint(equalTo: salg.bottomAnchor, constant: 0).isActive = true
+        
+        // ホーム画面用のテーブルビューを配置する。
+        tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.backgroundColor = .blue
+        self.view.addSubview(tableView)
+        tableView.topAnchor.constraint(equalTo: salg.topAnchor, constant: 0).isActive = true
+        tableView.leadingAnchor.constraint(equalTo: salg.leadingAnchor, constant: 0).isActive = true
+        tableView.trailingAnchor.constraint(equalTo: salg.trailingAnchor, constant: 0).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: salg.bottomAnchor, constant: 0).isActive = true
+        tableView.dataSource = self
+        tableView.register(LowPriceItemTableViewCell.self, forCellReuseIdentifier: "LowPriceItemTableViewCell")
+        
+        
+        disposeBag = DisposeBag()
+        let itemRepository = ItemRepository()
+        itemRepository.getRecommendedItem().subscribe(
+            onNext: { items in
+                for item in items {
+                    print("name:" + item.name)
+                    print("price:" + String(item.price))
+                    print("image:" + item.imageUrl)
+                }
+            },
+            onError: { err in
+                print(err)
+            },
+            onCompleted: {
+                print("Complete:")
+            },
+            onDisposed: {
+                print("Disposed:")
+            }).disposed(by: disposeBag)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -61,6 +75,15 @@ class HomeViewController: UIViewController, UICollectionViewDataSource {
             withReuseIdentifier: "HomeCollectionViewCell",
             for: indexPath) as! HomeCollectionViewCell
         
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return dummyItems.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "LowPriceItemTableViewCell") as! LowPriceItemTableViewCell
         return cell
     }
 

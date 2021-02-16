@@ -11,5 +11,6 @@ target 'IOS_Xacdonald' do
   pod 'RxRelay'
   pod 'RxDataSources'
   pod 'AlamofireImage'
+  pod 'PINRemoteImage'
 
 end

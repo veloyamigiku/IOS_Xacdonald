@@ -3,6 +3,21 @@ PODS:
   - AlamofireImage (4.1.0):
     - Alamofire (~> 5.1)
   - Differentiator (4.0.1)
+  - PINCache (3.0.3):
+    - PINCache/Arc-exception-safe (= 3.0.3)
+    - PINCache/Core (= 3.0.3)
+  - PINCache/Arc-exception-safe (3.0.3):
+    - PINCache/Core
+  - PINCache/Core (3.0.3):
+    - PINOperation (~> 1.2.1)
+  - PINOperation (1.2.1)
+  - PINRemoteImage (3.0.3):
+    - PINRemoteImage/PINCache (= 3.0.3)
+  - PINRemoteImage/Core (3.0.3):
+    - PINOperation
+  - PINRemoteImage/PINCache (3.0.3):
+    - PINCache (~> 3.0.3)
+    - PINRemoteImage/Core
   - RxCocoa (5.1.1):
     - RxRelay (~> 5)
     - RxSwift (~> 5)
@@ -17,6 +32,7 @@ PODS:
 
 DEPENDENCIES:
   - AlamofireImage
+  - PINRemoteImage
   - RxDataSources
   - RxRelay
   - RxSwift
@@ -27,6 +43,9 @@ SPEC REPOS:
     - Alamofire
     - AlamofireImage
     - Differentiator
+    - PINCache
+    - PINOperation
+    - PINRemoteImage
     - RxCocoa
     - RxDataSources
     - RxRelay
@@ -37,12 +56,15 @@ SPEC CHECKSUMS:
   Alamofire: 3b6a534a3df22db367e4dedeeca73d1ddfcf0e2f
   AlamofireImage: c4a2ba349885fb3064feb74d2e547bd42ce9be10
   Differentiator: 886080237d9f87f322641dedbc5be257061b0602
+  PINCache: 7a8fc1a691173d21dbddbf86cd515de6efa55086
+  PINOperation: 00c935935f1e8cf0d1e2d6b542e75b88fc3e5e20
+  PINRemoteImage: f1295b29f8c5e640e25335a1b2bd9d805171bd01
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
   RxDataSources: efee07fa4de48477eca0a4611e6d11e2da9c1114
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
   RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: e8c773dc525e458da6b3c9d4dda8bf1b4065f2ae
+PODFILE CHECKSUM: f865eee7777366c69dc03df35da84988096272bd
 
-COCOAPODS: 1.8.3
+COCOAPODS: 1.8.4
