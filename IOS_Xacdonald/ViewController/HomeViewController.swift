@@ -42,7 +42,7 @@ class HomeViewController: UIViewController, UITableViewDataSource {
         tableView.bottomAnchor.constraint(equalTo: salg.bottomAnchor, constant: 0).isActive = true
         tableView.dataSource = self
         tableView.register(LowPriceItemTableViewCell.self, forCellReuseIdentifier: "LowPriceItemTableViewCell")
-        
+        tableView.register(RecommendedItemTableViewCell.self, forCellReuseIdentifier: "RecommendedItemTableViewCell")
         
         disposeBag = DisposeBag()
         let itemRepository = ItemRepository()
@@ -83,8 +83,15 @@ class HomeViewController: UIViewController, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "LowPriceItemTableViewCell") as! LowPriceItemTableViewCell
-        return cell
+        
+        if indexPath.row % 2 == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "LowPriceItemTableViewCell") as! LowPriceItemTableViewCell
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "RecommendedItemTableViewCell") as! RecommendedItemTableViewCell
+            return cell
+        }
+        
     }
 
 }
