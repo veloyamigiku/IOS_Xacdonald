@@ -46,6 +46,25 @@ class HomeViewController: UIViewController, UITableViewDataSource {
         
         disposeBag = DisposeBag()
         let itemRepository = ItemRepository()
+        let lowPriceItemObservable = itemRepository.getLowPriceItem()
+        let recommendedItemObservable = itemRepository.getRecommendedItem()
+        Observable.zip(
+            lowPriceItemObservable,
+            recommendedItemObservable).subscribe(
+                onNext: { (lowPriceItems, recommendedItems) in
+                    print("===onNext===")
+                },
+                onError: { err in
+                    print("===err===")
+                    print(err)
+                },
+                onCompleted: {
+                    print("===complete===")
+                },
+                onDisposed: {
+                    print("===dispose===")
+                }).disposed(by: disposeBag)
+        /*
         itemRepository.getRecommendedItem().subscribe(
             onNext: { items in
                 for item in items {
@@ -62,7 +81,7 @@ class HomeViewController: UIViewController, UITableViewDataSource {
             },
             onDisposed: {
                 print("Disposed:")
-            }).disposed(by: disposeBag)
+            }).disposed(by: disposeBag)*/
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

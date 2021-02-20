@@ -29,6 +29,14 @@ class HttpGet {
     func exec(url: String, query: [String: String]) -> Observable<Data> {
         var urlComponents = URLComponents(string: url)
         urlComponents?.queryItems = createQueryItems(query: query)
+        let query = urlComponents?.query
+        
+        // [+]をエンコード対象とする。
+        var urlQueryAllowedCs = CharacterSet.urlQueryAllowed
+        // クエリ文字列内で許容する[+]を許容対象外（エンコード対象）とする。
+        urlQueryAllowedCs.remove("+")
+        urlComponents?.percentEncodedQuery = query?.addingPercentEncoding(withAllowedCharacters: urlQueryAllowedCs)
+        
         let request = URLRequest(url: (urlComponents?.url)!)
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             guard let data = data else { return }

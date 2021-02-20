@@ -8,31 +8,75 @@
 
 import Foundation
 import RxSwift
-import RxRelay
 import SwiftyJSON
+
+enum ItemSearchError : Error {
+    case cantParseJson
+    case failure
+}
 
 class ItemRepository {
     
+    private final var itemSearchUrl = "https://shopping.yahooapis.jp/ShoppingWebService/V3/itemSearch"
     private var disposeBag: DisposeBag
-    private var recommendedItemRelay: PublishRelay<[RecommendedItem]>
+    private var lowPriceItemSubject: PublishSubject<[LowPriceItem]>
+    private var recommendedItemSubject: PublishSubject<[RecommendedItem]>
     
     init() {
         disposeBag = DisposeBag()
-        recommendedItemRelay = PublishRelay()
+        lowPriceItemSubject = PublishSubject()
+        recommendedItemSubject = PublishSubject()
+    }
+    
+    func getLowPriceItem() -> Observable<[LowPriceItem]> {
+        
+        let observable = lowPriceItemSubject.asObservable()
+        
+        let httpGet = HttpGet()
+        httpGet.exec(
+            url: itemSearchUrl,
+            query: [
+                "appid": "dj00aiZpPWVheHgxT3VmSmp0eSZzPWNvbnN1bWVyc2VjcmV0Jng9YzU-",
+                "genre_category_id": "2161",
+                "image_size": "300",
+                "sort": "+price",
+                "results": "4"
+            ]).subscribe(
+                onNext: { data in
+                    do {
+                        let json = try JSON(data: data)
+                        let jsonItems = json["hits"]
+                        var lowPriceItems: [LowPriceItem] = []
+                        for (_, jsonItem) in jsonItems {
+                            lowPriceItems.append(LowPriceItem(
+                                                    url: jsonItem["exImage"]["url"].stringValue))
+                        }
+                        self.lowPriceItemSubject.onNext(lowPriceItems)
+                    } catch let jsonError {
+                        print(jsonError)
+                        self.lowPriceItemSubject.onError(ItemSearchError.cantParseJson)
+                    }
+                },
+                onError: { err in
+                    print(err)
+                    self.lowPriceItemSubject.onError(ItemSearchError.failure)
+                }).disposed(by: disposeBag)
+        
+        return observable
     }
     
     func getRecommendedItem() -> Observable<[RecommendedItem]> {
         
-        let observable = recommendedItemRelay.asObservable()
+        let observable = recommendedItemSubject.asObservable()
         
         let httpGet = HttpGet()
         httpGet.exec(
-            url: "https://shopping.yahooapis.jp/ShoppingWebService/V3/itemSearch",
+            url: itemSearchUrl,
             query: [
                 "appid": "dj00aiZpPWVheHgxT3VmSmp0eSZzPWNvbnN1bWVyc2VjcmV0Jng9YzU-",
                 "is_discounted": "true",
                 "genre_category_id": "2161",
-                "image_size": "300",
+                "image_size": "106",
                 "sort": "-score",
                 "results": "10"
             ]).subscribe(
@@ -47,15 +91,15 @@ class ItemRepository {
                                                     price: jsonItem["price"].intValue,
                                                     imageUrl: jsonItem["exImage"]["url"].stringValue))
                     }
-                    self.recommendedItemRelay.accept(recommendedItems)
+                    self.recommendedItemSubject.onNext(recommendedItems)
                 } catch let jsonError {
                     print(jsonError)
-                    self.recommendedItemRelay.accept([])
+                    self.recommendedItemSubject.onError(ItemSearchError.cantParseJson)
                 }
             },
             onError: { err in
                 print(err)
-                self.recommendedItemRelay.accept([])
+                self.recommendedItemSubject.onError(ItemSearchError.failure)
             }).disposed(by: disposeBag)
         
         return observable
