@@ -9,22 +9,16 @@
 import UIKit
 import RxSwift
 
+enum HomeViewControllerError : Error {
+    case NotFoundItemStruct
+}
+
 class HomeViewController: UIViewController, UITableViewDataSource {
     
     private var disposeBag: DisposeBag!
+    private var viewModel: HomeViewModel!
+    private var items: [Any] = []
     private var tableView: UITableView!
-    
-    private let dummyItems: [Int] = [
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9,
-        10]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,72 +39,50 @@ class HomeViewController: UIViewController, UITableViewDataSource {
         tableView.register(RecommendedItemTableViewCell.self, forCellReuseIdentifier: "RecommendedItemTableViewCell")
         
         disposeBag = DisposeBag()
-        let itemRepository = ItemRepository()
-        let lowPriceItemObservable = itemRepository.getLowPriceItem()
-        let recommendedItemObservable = itemRepository.getRecommendedItem()
-        Observable.zip(
-            lowPriceItemObservable,
-            recommendedItemObservable).subscribe(
-                onNext: { (lowPriceItems, recommendedItems) in
+        viewModel = HomeViewModel()
+        viewModel
+            .getItem()
+            .observeOn(MainScheduler.instance)
+            .subscribe(
+                onNext: { items in
                     print("===onNext===")
+                    self.items = items
+                    self.tableView.reloadData()
                 },
                 onError: { err in
-                    print("===err===")
-                    print(err)
+                    print("===onError===")
                 },
                 onCompleted: {
-                    print("===complete===")
+                    print("===onCompleted===")
                 },
                 onDisposed: {
-                    print("===dispose===")
-                }).disposed(by: disposeBag)
-        /*
-        itemRepository.getRecommendedItem().subscribe(
-            onNext: { items in
-                for item in items {
-                    print("name:" + item.name)
-                    print("price:" + String(item.price))
-                    print("image:" + item.imageUrl)
-                }
-            },
-            onError: { err in
-                print(err)
-            },
-            onCompleted: {
-                print("Complete:")
-            },
-            onDisposed: {
-                print("Disposed:")
-            }).disposed(by: disposeBag)*/
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return dummyItems.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+                    print("===onDisposed===")
+                })
+            .disposed(by: disposeBag)
         
-        let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: "HomeCollectionViewCell",
-            for: indexPath) as! HomeCollectionViewCell
-        
-        return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dummyItems.count
+        return items.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if indexPath.row % 2 == 0 {
+        if items[indexPath.row] is LowPriceItem {
             let cell = tableView.dequeueReusableCell(withIdentifier: "LowPriceItemTableViewCell") as! LowPriceItemTableViewCell
+            let lowPriceItem = items[indexPath.row] as! LowPriceItem
+            cell.lowPriceItem = lowPriceItem
+            return cell
+        } else if items[indexPath.row] is RecommendedItemSet {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "RecommendedItemTableViewCell") as! RecommendedItemTableViewCell
+            let recommendedItemSet = items[indexPath.row] as! RecommendedItemSet
+            cell.recommendedItemSet = recommendedItemSet
             return cell
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "RecommendedItemTableViewCell") as! RecommendedItemTableViewCell
-            return cell
+            print("想定外の商品モデルがテーブルのリストに存在します。実装を確認して下さい。")
+            return UITableViewCell()
         }
         
     }
-
+    
 }

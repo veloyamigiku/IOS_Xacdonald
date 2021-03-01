@@ -13,6 +13,12 @@ class LowPriceItemTableViewCell: UITableViewCell {
     
     private var dummy: UIView!
     private var img: UIImageView!
+    var lowPriceItem: LowPriceItem! {
+        didSet {
+            guard let lpi = lowPriceItem else { return }
+            img.pin_setImage(from: URL(string: lpi.url))
+        }
+    }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -20,7 +26,6 @@ class LowPriceItemTableViewCell: UITableViewCell {
         // 画像を配置する。
         img = UIImageView()
         img.translatesAutoresizingMaskIntoConstraints = false
-        img.pin_setImage(from: URL(string: "https://item-shopping.c.yimg.jp/i/j/lkestore_d1343-usb-rb-s"))
         contentView.addSubview(img)
         img.heightAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
         img.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0).isActive = true

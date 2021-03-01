@@ -40,7 +40,8 @@ class ItemRepository {
                 "genre_category_id": "2161",
                 "image_size": "300",
                 "sort": "+price",
-                "results": "4"
+                "results": "10",
+                "condition": "new"
             ]).subscribe(
                 onNext: { data in
                     do {
@@ -78,7 +79,8 @@ class ItemRepository {
                 "genre_category_id": "2161",
                 "image_size": "106",
                 "sort": "-score",
-                "results": "10"
+                "results": "4",
+                "condition": "new"
             ]).subscribe(
             onNext: { data in
                 do {

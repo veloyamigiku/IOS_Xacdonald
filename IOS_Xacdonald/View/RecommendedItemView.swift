@@ -15,6 +15,15 @@ class RecommendedItemView: UIView {
     private var nameLabel: UILabel!
     private var priceLabel: UILabel!
     
+    var recommendedItem: RecommendedItem! {
+        didSet {
+            guard let ri = recommendedItem else { return }
+            itemImage.pin_setImage(from: URL(string: ri.imageUrl))
+            nameLabel.text = ri.name
+            priceLabel.text = "¥" + String(ri.price)
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -24,10 +33,8 @@ class RecommendedItemView: UIView {
         itemImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 5).isActive = true
         itemImage.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         itemImage.heightAnchor.constraint(equalToConstant: 106).isActive = true
-        itemImage.pin_setImage(from: URL(string: "https://item-shopping.c.yimg.jp/i/d/goodwoods_13751943379aevyx"))
         
         nameLabel = UILabel()
-        nameLabel.text = "Joy-Con 充電器スタンド 充電指示LED付き 4台同時充電 ニンテンドー スイッチ Joy-Con 充電スタンド レビューを書いて追跡なしメール便送料無料可"
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(nameLabel)
         nameLabel.topAnchor.constraint(equalTo: itemImage.bottomAnchor, constant: 5).isActive = true
@@ -35,7 +42,6 @@ class RecommendedItemView: UIView {
         nameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5).isActive = true
         
         priceLabel = UILabel()
-        priceLabel.text = "¥1900"
         priceLabel.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(priceLabel)
         priceLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 5).isActive = true
