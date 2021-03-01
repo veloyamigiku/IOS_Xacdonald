@@ -11,6 +11,8 @@
 		350216BC2590D9F500CEA169 /* RecommendedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350216BB2590D9F500CEA169 /* RecommendedItem.swift */; };
 		35392FAB25E2EA9100499653 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35392FAA25E2EA9100499653 /* HomeViewModel.swift */; };
 		35392FAE25E2ECD900499653 /* RecommendedItemSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35392FAD25E2ECD900499653 /* RecommendedItemSet.swift */; };
+		3548A11025ED9922000B5024 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3548A10F25ED9922000B5024 /* MainTabBarController.swift */; };
+		3548A11425EDA2AD000B5024 /* CouponViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3548A11325EDA2AD000B5024 /* CouponViewController.swift */; };
 		3586AD0725DC624800D85612 /* LowPriceItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3586AD0625DC624800D85612 /* LowPriceItemTableViewCell.swift */; };
 		358F7C3B25DD2A0D00EBA48C /* RecommendedItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358F7C3A25DD2A0D00EBA48C /* RecommendedItemTableViewCell.swift */; };
 		358F7C3F25DD974800EBA48C /* RecommendedItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358F7C3E25DD974800EBA48C /* RecommendedItemView.swift */; };
@@ -19,7 +21,6 @@
 		389B9B3925875E240082AEBF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389B9B3825875E240082AEBF /* HomeViewController.swift */; };
 		38B7AEF625875B43003433A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B7AEF525875B43003433A5 /* AppDelegate.swift */; };
 		38B7AEF825875B43003433A5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B7AEF725875B43003433A5 /* SceneDelegate.swift */; };
-		38B7AEFD25875B43003433A5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38B7AEFB25875B43003433A5 /* Main.storyboard */; };
 		38B7AEFF25875B44003433A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38B7AEFE25875B44003433A5 /* Assets.xcassets */; };
 		38B7AF0225875B44003433A5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38B7AF0025875B44003433A5 /* LaunchScreen.storyboard */; };
 		CC770702EE1F7E758448A8CE /* Pods_IOS_Xacdonald.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E5D2D40CF69EAF946539975 /* Pods_IOS_Xacdonald.framework */; };
@@ -30,6 +31,8 @@
 		350216BB2590D9F500CEA169 /* RecommendedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedItem.swift; sourceTree = "<group>"; };
 		35392FAA25E2EA9100499653 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		35392FAD25E2ECD900499653 /* RecommendedItemSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedItemSet.swift; sourceTree = "<group>"; };
+		3548A10F25ED9922000B5024 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		3548A11325EDA2AD000B5024 /* CouponViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponViewController.swift; sourceTree = "<group>"; };
 		3586AD0625DC624800D85612 /* LowPriceItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowPriceItemTableViewCell.swift; sourceTree = "<group>"; };
 		358F7C3A25DD2A0D00EBA48C /* RecommendedItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedItemTableViewCell.swift; sourceTree = "<group>"; };
 		358F7C3E25DD974800EBA48C /* RecommendedItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedItemView.swift; sourceTree = "<group>"; };
@@ -39,7 +42,6 @@
 		38B7AEF225875B43003433A5 /* IOS_Xacdonald.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IOS_Xacdonald.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38B7AEF525875B43003433A5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		38B7AEF725875B43003433A5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		38B7AEFC25875B43003433A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		38B7AEFE25875B44003433A5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		38B7AF0125875B44003433A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		38B7AF0325875B44003433A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -121,12 +123,14 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		389B9B3A25875E2A0082AEBF /* ViewController */ = {
+		389B9B3A25875E2A0082AEBF /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				389B9B3825875E240082AEBF /* HomeViewController.swift */,
+				3548A10F25ED9922000B5024 /* MainTabBarController.swift */,
+				3548A11325EDA2AD000B5024 /* CouponViewController.swift */,
 			);
-			path = ViewController;
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		38B7AEE925875B43003433A5 = {
@@ -153,12 +157,11 @@
 				3586AD0525DC621100D85612 /* TableViewCell */,
 				350216B62590D72900CEA169 /* Model */,
 				358F7C3D25DD968300EBA48C /* View */,
-				389B9B3A25875E2A0082AEBF /* ViewController */,
+				389B9B3A25875E2A0082AEBF /* Controller */,
 				350216B52590D70E00CEA169 /* ViewModel */,
 				35F392052590DCA30043257F /* Utils */,
 				38B7AEF525875B43003433A5 /* AppDelegate.swift */,
 				38B7AEF725875B43003433A5 /* SceneDelegate.swift */,
-				38B7AEFB25875B43003433A5 /* Main.storyboard */,
 				38B7AEFE25875B44003433A5 /* Assets.xcassets */,
 				38B7AF0025875B44003433A5 /* LaunchScreen.storyboard */,
 				38B7AF0325875B44003433A5 /* Info.plist */,
@@ -228,7 +231,6 @@
 			files = (
 				38B7AF0225875B44003433A5 /* LaunchScreen.storyboard in Resources */,
 				38B7AEFF25875B44003433A5 /* Assets.xcassets in Resources */,
-				38B7AEFD25875B43003433A5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,10 +290,12 @@
 				3586AD0725DC624800D85612 /* LowPriceItemTableViewCell.swift in Sources */,
 				358F7C3B25DD2A0D00EBA48C /* RecommendedItemTableViewCell.swift in Sources */,
 				350216BC2590D9F500CEA169 /* RecommendedItem.swift in Sources */,
+				3548A11025ED9922000B5024 /* MainTabBarController.swift in Sources */,
 				350216B82590D8E500CEA169 /* ItemRepository.swift in Sources */,
 				35392FAB25E2EA9100499653 /* HomeViewModel.swift in Sources */,
 				38B7AEF625875B43003433A5 /* AppDelegate.swift in Sources */,
 				38B7AEF825875B43003433A5 /* SceneDelegate.swift in Sources */,
+				3548A11425EDA2AD000B5024 /* CouponViewController.swift in Sources */,
 				389B9B3925875E240082AEBF /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -299,14 +303,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		38B7AEFB25875B43003433A5 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				38B7AEFC25875B43003433A5 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		38B7AF0025875B44003433A5 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

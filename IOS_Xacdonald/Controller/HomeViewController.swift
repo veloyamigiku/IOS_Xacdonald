@@ -9,10 +9,6 @@
 import UIKit
 import RxSwift
 
-enum HomeViewControllerError : Error {
-    case NotFoundItemStruct
-}
-
 class HomeViewController: UIViewController, UITableViewDataSource {
     
     private var disposeBag: DisposeBag!
@@ -22,7 +18,7 @@ class HomeViewController: UIViewController, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         let salg = self.view.safeAreaLayoutGuide
         
         // ホーム画面用のテーブルビューを配置する。
