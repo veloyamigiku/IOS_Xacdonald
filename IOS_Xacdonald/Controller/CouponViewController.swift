@@ -7,13 +7,21 @@
 //
 
 import UIKit
+import RxSwift
 
-class CouponViewController: UIViewController {
+class CouponViewController: UIViewController, UITableViewDataSource {
     
     private var type: String
+    private var tableView: UITableView!
+    private var cvm: CouponViewModel
+    private var db: DisposeBag
+    private var couponItems: [CouponItem]
     
     init(type: String) {
         self.type = type
+        self.cvm = CouponViewModel()
+        self.db = DisposeBag()
+        self.couponItems = []
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -24,15 +32,41 @@ class CouponViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let label = UILabel()
-        label.text = type
-        label.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(label)
-        label.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        label.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        label.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        label.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        let salg = view.safeAreaLayoutGuide
         
+        tableView = UITableView()
+        tableView.backgroundColor = .brown
+        tableView.register(CouponItemTableViewCell.self, forCellReuseIdentifier: "CouponItemTableViewCell")
+        tableView.dataSource = self
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(tableView)
+        tableView.topAnchor.constraint(equalTo: salg.topAnchor).isActive = true
+        tableView.leadingAnchor.constraint(equalTo: salg.leadingAnchor).isActive = true
+        tableView.trailingAnchor.constraint(equalTo: salg.trailingAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: salg.bottomAnchor).isActive = true
+        
+        cvm
+            .getCouponItem(categoryID: ModelConstant.CATEGORY_ID_PS4)
+            .observeOn(MainScheduler.instance)
+            .subscribe(
+                onNext: { couponItems in
+                    self.couponItems = couponItems
+                    self.tableView.reloadData()
+                },
+                onError: { error in
+                    print("error")
+                }).disposed(by: db)
+        
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return couponItems.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CouponItemTableViewCell") as! CouponItemTableViewCell
+        cell.couponItem = couponItems[indexPath.row]
+        return cell
     }
 
 }
