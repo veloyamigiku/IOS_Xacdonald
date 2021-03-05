@@ -27,10 +27,10 @@ class LowPriceItemTableViewCell: UITableViewCell {
         img = UIImageView()
         img.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(img)
-        img.heightAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
+        img.widthAnchor.constraint(equalToConstant: 300).isActive = true
+        img.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        img.heightAnchor.constraint(equalToConstant: 300).isActive = true
         img.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0).isActive = true
-        img.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0).isActive = true
-        img.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0).isActive = true
         
         // 上下の制約の警告を解消するためのコンポーネントを配置する。
         dummy = UIView()
