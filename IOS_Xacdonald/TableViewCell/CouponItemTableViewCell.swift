@@ -31,16 +31,17 @@ class CouponItemTableViewCell: UITableViewCell {
         itemImage = UIImageView()
         itemImage.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(itemImage)
-        itemImage.heightAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
         itemImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5).isActive = true
-        itemImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5).isActive = true
-        itemImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5).isActive = true
+        itemImage.heightAnchor.constraint(equalToConstant: 300).isActive = true
+        itemImage.widthAnchor.constraint(equalToConstant: 300).isActive = true
+        itemImage.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         
         itemName = UILabel()
         itemName.numberOfLines = 3
         itemName.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(itemName)
         itemName.topAnchor.constraint(equalTo: itemImage.bottomAnchor, constant: 5).isActive = true
+        //itemName.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5).isActive = true
         itemName.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5).isActive = true
         itemName.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5).isActive = true
         
@@ -78,5 +79,5 @@ class CouponItemTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-
+    
 }

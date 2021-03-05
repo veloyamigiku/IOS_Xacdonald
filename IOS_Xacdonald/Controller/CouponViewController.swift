@@ -11,16 +11,16 @@ import RxSwift
 
 class CouponViewController: UIViewController, UITableViewDataSource {
     
-    private var type: String
+    private var couponCategoryID: String
     private var tableView: UITableView!
-    private var cvm: CouponViewModel
-    private var db: DisposeBag
+    private var couponViewModel: CouponViewModel
+    private var disposeBag: DisposeBag
     private var couponItems: [CouponItem]
     
-    init(type: String) {
-        self.type = type
-        self.cvm = CouponViewModel()
-        self.db = DisposeBag()
+    init(couponCategoryID: String) {
+        self.couponCategoryID = couponCategoryID
+        self.couponViewModel = CouponViewModel()
+        self.disposeBag = DisposeBag()
         self.couponItems = []
         super.init(nibName: nil, bundle: nil)
     }
@@ -45,8 +45,8 @@ class CouponViewController: UIViewController, UITableViewDataSource {
         tableView.trailingAnchor.constraint(equalTo: salg.trailingAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: salg.bottomAnchor).isActive = true
         
-        cvm
-            .getCouponItem(categoryID: ModelConstant.CATEGORY_ID_PS4)
+        couponViewModel
+            .getCouponItem(categoryID: couponCategoryID)
             .observeOn(MainScheduler.instance)
             .subscribe(
                 onNext: { couponItems in
@@ -55,7 +55,7 @@ class CouponViewController: UIViewController, UITableViewDataSource {
                 },
                 onError: { error in
                     print("error")
-                }).disposed(by: db)
+                }).disposed(by: disposeBag)
         
     }
     

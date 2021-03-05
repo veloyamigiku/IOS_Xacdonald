@@ -10,10 +10,10 @@ import UIKit
 
 class CouponPageViewController: UIPageViewController, UIPageViewControllerDataSource {
     
-    private static let COUPON_TYPE_LIST = [
-        "朝",
-        "ランチ",
-        "夜"
+    private static let COUPON_CATEGORY_ID_LIST = [
+        ModelConstant.CATEGORY_ID_PS4,
+        ModelConstant.CATEGORY_ID_XBOX,
+        ModelConstant.CATEGORY_ID_SW
     ]
     
     private var controllers: [UIViewController] = []
@@ -23,9 +23,9 @@ class CouponPageViewController: UIPageViewController, UIPageViewControllerDataSo
         
         self.dataSource = self
         
-        for couponType in CouponPageViewController.COUPON_TYPE_LIST {
-            print(couponType)
-            let couponViewController = CouponViewController(type: couponType)
+        for couponCategoryID in CouponPageViewController.COUPON_CATEGORY_ID_LIST {
+            print(couponCategoryID)
+            let couponViewController = CouponViewController(couponCategoryID: couponCategoryID)
             controllers.append(couponViewController)
         }
         
