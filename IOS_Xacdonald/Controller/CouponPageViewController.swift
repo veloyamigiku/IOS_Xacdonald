@@ -11,9 +11,12 @@ import UIKit
 class CouponPageViewController: UIPageViewController, UIPageViewControllerDataSource {
     
     private static let COUPON_CATEGORY_ID_LIST = [
+        ModelConstant.CATEGORY_ID_PS5,
+        ModelConstant.CATEGORY_ID_XBOX_SERIES_X_S,
         ModelConstant.CATEGORY_ID_PS4,
-        ModelConstant.CATEGORY_ID_XBOX,
-        ModelConstant.CATEGORY_ID_SW
+        ModelConstant.CATEGORY_ID_XBOX_ONE,
+        ModelConstant.CATEGORY_ID_SW,
+        ModelConstant.CATEGORY_ID_PS3
     ]
     
     private var controllers: [UIViewController] = []
