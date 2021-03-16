@@ -17,14 +17,10 @@ class MainTabBarController: UITabBarController {
         
         let homeViewController = HomeViewController()
         homeViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .history, tag: 0)
-        
-        let couponPageViewController = CouponPageViewController(
-            transitionStyle: .scroll,
-            navigationOrientation: .horizontal,
-            options: nil)
-        couponPageViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .downloads, tag: 0)
-        
-        viewControllers = [homeViewController, couponPageViewController]
+
+        let couponRootViewController = CouponRootViewController()
+        couponRootViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .downloads, tag: 0)
+        viewControllers = [homeViewController, couponRootViewController]
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {

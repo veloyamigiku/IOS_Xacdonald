@@ -9,12 +9,14 @@
 /* Begin PBXBuildFile section */
 		350216B82590D8E500CEA169 /* ItemRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350216B72590D8E500CEA169 /* ItemRepository.swift */; };
 		350216BC2590D9F500CEA169 /* RecommendedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350216BB2590D9F500CEA169 /* RecommendedItem.swift */; };
+		35085BA425FEC5C5003FCF98 /* CouponCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35085BA325FEC5C5003FCF98 /* CouponCollectionViewCell.swift */; };
+		35085BA725FECF20003FCF98 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35085BA625FECF20003FCF98 /* String.swift */; };
 		35392FAB25E2EA9100499653 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35392FAA25E2EA9100499653 /* HomeViewModel.swift */; };
 		35392FAE25E2ECD900499653 /* RecommendedItemSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35392FAD25E2ECD900499653 /* RecommendedItemSet.swift */; };
+		3541893325F4302E00DDAE7E /* CouponRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3541893225F4302E00DDAE7E /* CouponRootViewController.swift */; };
 		3548A11025ED9922000B5024 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3548A10F25ED9922000B5024 /* MainTabBarController.swift */; };
 		3548A11425EDA2AD000B5024 /* CouponViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3548A11325EDA2AD000B5024 /* CouponViewController.swift */; };
 		354D3F9925F17FF100E72722 /* CouponItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354D3F9825F17FF100E72722 /* CouponItemTableViewCell.swift */; };
-		35559CC225EEEA1A0025F88A /* CouponPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35559CC125EEEA1A0025F88A /* CouponPageViewController.swift */; };
 		3586AD0725DC624800D85612 /* LowPriceItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3586AD0625DC624800D85612 /* LowPriceItemTableViewCell.swift */; };
 		358F7C3B25DD2A0D00EBA48C /* RecommendedItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358F7C3A25DD2A0D00EBA48C /* RecommendedItemTableViewCell.swift */; };
 		358F7C3F25DD974800EBA48C /* RecommendedItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358F7C3E25DD974800EBA48C /* RecommendedItemView.swift */; };
@@ -35,12 +37,14 @@
 /* Begin PBXFileReference section */
 		350216B72590D8E500CEA169 /* ItemRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRepository.swift; sourceTree = "<group>"; };
 		350216BB2590D9F500CEA169 /* RecommendedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedItem.swift; sourceTree = "<group>"; };
+		35085BA325FEC5C5003FCF98 /* CouponCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponCollectionViewCell.swift; sourceTree = "<group>"; };
+		35085BA625FECF20003FCF98 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		35392FAA25E2EA9100499653 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		35392FAD25E2ECD900499653 /* RecommendedItemSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedItemSet.swift; sourceTree = "<group>"; };
+		3541893225F4302E00DDAE7E /* CouponRootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponRootViewController.swift; sourceTree = "<group>"; };
 		3548A10F25ED9922000B5024 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		3548A11325EDA2AD000B5024 /* CouponViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponViewController.swift; sourceTree = "<group>"; };
 		354D3F9825F17FF100E72722 /* CouponItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponItemTableViewCell.swift; sourceTree = "<group>"; };
-		35559CC125EEEA1A0025F88A /* CouponPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponPageViewController.swift; sourceTree = "<group>"; };
 		3586AD0625DC624800D85612 /* LowPriceItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowPriceItemTableViewCell.swift; sourceTree = "<group>"; };
 		358F7C3A25DD2A0D00EBA48C /* RecommendedItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedItemTableViewCell.swift; sourceTree = "<group>"; };
 		358F7C3E25DD974800EBA48C /* RecommendedItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedItemView.swift; sourceTree = "<group>"; };
@@ -114,6 +118,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		35085BA225FEC4D6003FCF98 /* CollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				35085BA325FEC5C5003FCF98 /* CouponCollectionViewCell.swift */,
+			);
+			path = CollectionViewCell;
+			sourceTree = "<group>";
+		};
 		3586AD0525DC621100D85612 /* TableViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -136,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				35F392062590DCBB0043257F /* HttpGet.swift */,
+				35085BA625FECF20003FCF98 /* String.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -146,7 +159,7 @@
 				389B9B3825875E240082AEBF /* HomeViewController.swift */,
 				3548A10F25ED9922000B5024 /* MainTabBarController.swift */,
 				3548A11325EDA2AD000B5024 /* CouponViewController.swift */,
-				35559CC125EEEA1A0025F88A /* CouponPageViewController.swift */,
+				3541893225F4302E00DDAE7E /* CouponRootViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -172,6 +185,7 @@
 		38B7AEF425875B43003433A5 /* IOS_Xacdonald */ = {
 			isa = PBXGroup;
 			children = (
+				35085BA225FEC4D6003FCF98 /* CollectionViewCell */,
 				3586AD0525DC621100D85612 /* TableViewCell */,
 				350216B62590D72900CEA169 /* Model */,
 				358F7C3D25DD968300EBA48C /* View */,
@@ -303,12 +317,13 @@
 			files = (
 				35A34A9425E1904500983CE5 /* LowPriceItem.swift in Sources */,
 				35E6909625F0B71A0038C9D8 /* ModelConstant.swift in Sources */,
+				35085BA725FECF20003FCF98 /* String.swift in Sources */,
 				354D3F9925F17FF100E72722 /* CouponItemTableViewCell.swift in Sources */,
 				35392FAE25E2ECD900499653 /* RecommendedItemSet.swift in Sources */,
+				35085BA425FEC5C5003FCF98 /* CouponCollectionViewCell.swift in Sources */,
 				35F392072590DCBB0043257F /* HttpGet.swift in Sources */,
 				35E6909925F0B75B0038C9D8 /* CouponViewModel.swift in Sources */,
 				358F7C3F25DD974800EBA48C /* RecommendedItemView.swift in Sources */,
-				35559CC225EEEA1A0025F88A /* CouponPageViewController.swift in Sources */,
 				3586AD0725DC624800D85612 /* LowPriceItemTableViewCell.swift in Sources */,
 				358F7C3B25DD2A0D00EBA48C /* RecommendedItemTableViewCell.swift in Sources */,
 				350216BC2590D9F500CEA169 /* RecommendedItem.swift in Sources */,
@@ -316,6 +331,7 @@
 				350216B82590D8E500CEA169 /* ItemRepository.swift in Sources */,
 				35392FAB25E2EA9100499653 /* HomeViewModel.swift in Sources */,
 				38B7AEF625875B43003433A5 /* AppDelegate.swift in Sources */,
+				3541893325F4302E00DDAE7E /* CouponRootViewController.swift in Sources */,
 				38B7AEF825875B43003433A5 /* SceneDelegate.swift in Sources */,
 				3548A11425EDA2AD000B5024 /* CouponViewController.swift in Sources */,
 				35E6909325F0B6FB0038C9D8 /* CouponItemRepository.swift in Sources */,

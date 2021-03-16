@@ -16,9 +16,11 @@ class CouponViewController: UIViewController, UITableViewDataSource {
     private var couponViewModel: CouponViewModel
     private var disposeBag: DisposeBag
     private var couponItems: [CouponItem]
+    private var index: Int!
     
-    init(couponCategoryID: String) {
+    init(couponCategoryID: String, index: Int) {
         self.couponCategoryID = couponCategoryID
+        self.index = index
         self.couponViewModel = CouponViewModel()
         self.disposeBag = DisposeBag()
         self.couponItems = []
@@ -67,6 +69,10 @@ class CouponViewController: UIViewController, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CouponItemTableViewCell") as! CouponItemTableViewCell
         cell.couponItem = couponItems[indexPath.row]
         return cell
+    }
+    
+    func getIndex() -> Int {
+        return index
     }
 
 }
