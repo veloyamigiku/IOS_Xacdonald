@@ -18,12 +18,18 @@ class MainTabBarController: UITabBarController {
         let homeViewController = HomeViewController()
         let homeNavigationViewController = UINavigationController()
         homeNavigationViewController.viewControllers = [homeViewController]
-        homeNavigationViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .history, tag: 0)
+        homeNavigationViewController.tabBarItem = UITabBarItem(
+                title: "",
+                image: UIImage(named: "home")?.withRenderingMode(.alwaysOriginal),
+                selectedImage: UIImage(named: "home_active")?.withRenderingMode(.alwaysOriginal))
 
         let couponRootViewController = CouponRootViewController()
         let couponNavigationController = UINavigationController()
         couponNavigationController.viewControllers = [couponRootViewController]
-        couponNavigationController.tabBarItem = UITabBarItem(tabBarSystemItem: .downloads, tag: 0)
+        couponNavigationController.tabBarItem = UITabBarItem(
+                title: "",
+                image: UIImage(named: "coupon")?.withRenderingMode(.alwaysOriginal),
+                selectedImage: UIImage(named: "coupon_active")?.withRenderingMode(.alwaysOriginal))
         
         viewControllers = [homeNavigationViewController, couponNavigationController]
     }
