@@ -16,11 +16,16 @@ class MainTabBarController: UITabBarController {
         view.backgroundColor = .white
         
         let homeViewController = HomeViewController()
-        homeViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .history, tag: 0)
+        let homeNavigationViewController = UINavigationController()
+        homeNavigationViewController.viewControllers = [homeViewController]
+        homeNavigationViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .history, tag: 0)
 
         let couponRootViewController = CouponRootViewController()
-        couponRootViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .downloads, tag: 0)
-        viewControllers = [homeViewController, couponRootViewController]
+        let couponNavigationController = UINavigationController()
+        couponNavigationController.viewControllers = [couponRootViewController]
+        couponNavigationController.tabBarItem = UITabBarItem(tabBarSystemItem: .downloads, tag: 0)
+        
+        viewControllers = [homeNavigationViewController, couponNavigationController]
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {

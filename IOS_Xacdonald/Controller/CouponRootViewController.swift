@@ -56,6 +56,23 @@ class CouponRootViewController: UIViewController,
         
         pageIdx = 0
         
+        let accountBarButtonItem = UIBarButtonItem(
+            image: UIImage(named: "account")?.withRenderingMode(.alwaysOriginal),
+            style: .plain,
+            target: self,
+            action: #selector(tapAccountButton))
+        navigationItem.leftBarButtonItem = accountBarButtonItem
+        
+        let titleImgView = UIImageView(image: UIImage(named: "top"))
+        navigationItem.titleView = titleImgView
+        
+        let pointBarButtonItem = UIBarButtonItem(
+            image: UIImage(named: "point")?.withRenderingMode(.alwaysOriginal),
+            style: .plain,
+            target: self,
+            action: #selector(tapPointButton))
+        navigationItem.rightBarButtonItem = pointBarButtonItem
+        
         let salg = view.safeAreaLayoutGuide
         
         let collectionViewFlowLayout = UICollectionViewFlowLayout()
@@ -157,6 +174,14 @@ class CouponRootViewController: UIViewController,
             animated: true,
             scrollPosition: .centeredHorizontally)
         pageIdx = couponViewController.getIndex()
+    }
+    
+    @objc func tapAccountButton() {
+        print("tapped Account Button.")
+    }
+    
+    @objc func tapPointButton() {
+        print("tapped Point Button.")
     }
     
 }
