@@ -8,8 +8,9 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 
-class CouponViewController: UIViewController, UITableViewDataSource {
+class CouponViewController: UIViewController, UITableViewDataSource, CouponItemTableViewCellDelegate {
     
     private var couponCategoryID: String
     private var tableView: UITableView!
@@ -68,11 +69,24 @@ class CouponViewController: UIViewController, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CouponItemTableViewCell") as! CouponItemTableViewCell
         cell.couponItem = couponItems[indexPath.row]
+        cell.couponItemIdx = indexPath.row
+        cell.delegate = self
         return cell
     }
     
     func getIndex() -> Int {
         return index
     }
-
+    
+    func tapItemDescButton(itemIdx: Int) {
+        print("itemIdx:" + String(itemIdx))
+        let couponDetailViewController = CouponDetailViewController(couponItem: couponItems[itemIdx])
+        couponDetailViewController.modalPresentationStyle = .overFullScreen
+        couponDetailViewController.modalTransitionStyle = .crossDissolve
+        present(
+            couponDetailViewController,
+            animated: true,
+            completion: nil)
+    }
+    
 }

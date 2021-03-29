@@ -8,13 +8,22 @@
 
 import UIKit
 import PINRemoteImage
+import RxSwift
+import RxCocoa
+
+protocol CouponItemTableViewCellDelegate {
+    func tapItemDescButton(itemIdx: Int)
+}
 
 class CouponItemTableViewCell: UITableViewCell {
     
+    private var disposeBag: DisposeBag!
     private var itemImage: UIImageView!
     private var itemName: UILabel!
     private var itemDescButton: UIButton!
     private var itemPrice: UILabel!
+    var delegate: CouponItemTableViewCellDelegate!
+    
     var couponItem: CouponItem! {
         didSet {
             guard let item = couponItem else {
@@ -25,8 +34,13 @@ class CouponItemTableViewCell: UITableViewCell {
             itemPrice.text = "¥" + String(item.price)
         }
     }
+    var couponItemIdx: Int!
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        disposeBag = DisposeBag()
         
         itemImage = UIImageView()
         itemImage.translatesAutoresizingMaskIntoConstraints = false
@@ -53,6 +67,11 @@ class CouponItemTableViewCell: UITableViewCell {
                                                 NSAttributedString.Key.foregroundColor: UIColor.black
                                             ]),
                                           for: .normal)
+        itemDescButton.rx.tap
+            .subscribe(onNext: {
+                self.delegate.tapItemDescButton(itemIdx: self.couponItemIdx)
+            })
+            .disposed(by: disposeBag)
         itemDescButton.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(itemDescButton)
         itemDescButton.topAnchor.constraint(equalTo: itemName.bottomAnchor, constant: 5).isActive = true

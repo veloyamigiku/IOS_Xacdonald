@@ -21,6 +21,8 @@
 		358F7C3B25DD2A0D00EBA48C /* RecommendedItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358F7C3A25DD2A0D00EBA48C /* RecommendedItemTableViewCell.swift */; };
 		358F7C3F25DD974800EBA48C /* RecommendedItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358F7C3E25DD974800EBA48C /* RecommendedItemView.swift */; };
 		35A34A9425E1904500983CE5 /* LowPriceItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A34A9325E1904500983CE5 /* LowPriceItem.swift */; };
+		35D5E12F2606B2F500846D0F /* CouponDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D5E12E2606B2F500846D0F /* CouponDetailViewController.swift */; };
+		35D5E1322606B94300846D0F /* CouponDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D5E1312606B94300846D0F /* CouponDetailView.swift */; };
 		35E6909025F0B6DE0038C9D8 /* CouponItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E6908F25F0B6DE0038C9D8 /* CouponItem.swift */; };
 		35E6909325F0B6FB0038C9D8 /* CouponItemRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E6909225F0B6FB0038C9D8 /* CouponItemRepository.swift */; };
 		35E6909625F0B71A0038C9D8 /* ModelConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E6909525F0B71A0038C9D8 /* ModelConstant.swift */; };
@@ -49,6 +51,8 @@
 		358F7C3A25DD2A0D00EBA48C /* RecommendedItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedItemTableViewCell.swift; sourceTree = "<group>"; };
 		358F7C3E25DD974800EBA48C /* RecommendedItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedItemView.swift; sourceTree = "<group>"; };
 		35A34A9325E1904500983CE5 /* LowPriceItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowPriceItem.swift; sourceTree = "<group>"; };
+		35D5E12E2606B2F500846D0F /* CouponDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponDetailViewController.swift; sourceTree = "<group>"; };
+		35D5E1312606B94300846D0F /* CouponDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponDetailView.swift; sourceTree = "<group>"; };
 		35E6908F25F0B6DE0038C9D8 /* CouponItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponItem.swift; sourceTree = "<group>"; };
 		35E6909225F0B6FB0038C9D8 /* CouponItemRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponItemRepository.swift; sourceTree = "<group>"; };
 		35E6909525F0B71A0038C9D8 /* ModelConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelConstant.swift; sourceTree = "<group>"; };
@@ -140,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				358F7C3E25DD974800EBA48C /* RecommendedItemView.swift */,
+				35D5E1312606B94300846D0F /* CouponDetailView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -160,6 +165,7 @@
 				3548A10F25ED9922000B5024 /* MainTabBarController.swift */,
 				3548A11325EDA2AD000B5024 /* CouponViewController.swift */,
 				3541893225F4302E00DDAE7E /* CouponRootViewController.swift */,
+				35D5E12E2606B2F500846D0F /* CouponDetailViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -318,6 +324,7 @@
 				35A34A9425E1904500983CE5 /* LowPriceItem.swift in Sources */,
 				35E6909625F0B71A0038C9D8 /* ModelConstant.swift in Sources */,
 				35085BA725FECF20003FCF98 /* String.swift in Sources */,
+				35D5E1322606B94300846D0F /* CouponDetailView.swift in Sources */,
 				354D3F9925F17FF100E72722 /* CouponItemTableViewCell.swift in Sources */,
 				35392FAE25E2ECD900499653 /* RecommendedItemSet.swift in Sources */,
 				35085BA425FEC5C5003FCF98 /* CouponCollectionViewCell.swift in Sources */,
@@ -337,6 +344,7 @@
 				35E6909325F0B6FB0038C9D8 /* CouponItemRepository.swift in Sources */,
 				35E6909025F0B6DE0038C9D8 /* CouponItem.swift in Sources */,
 				389B9B3925875E240082AEBF /* HomeViewController.swift in Sources */,
+				35D5E12F2606B2F500846D0F /* CouponDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
