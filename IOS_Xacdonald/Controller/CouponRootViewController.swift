@@ -80,14 +80,13 @@ class CouponRootViewController: UIViewController,
         collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: collectionViewFlowLayout)
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
-        collectionView.backgroundColor = .cyan
+        collectionView.backgroundColor = .clear
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(CouponCollectionViewCell.self, forCellWithReuseIdentifier: "CouponCollectionViewCell")
         view.addSubview(collectionView)
-        let height = "".heightOfString(font: UIFont.systemFont(ofSize: 17))
-        collectionView.heightAnchor.constraint(equalToConstant: height).isActive = true
+        collectionView.heightAnchor.constraint(equalToConstant: CouponCollectionViewCell.CELL_HEIGHT).isActive = true
         collectionView.topAnchor.constraint(equalTo: salg.topAnchor, constant: 0).isActive = true
         collectionView.leadingAnchor.constraint(equalTo: salg.leadingAnchor, constant: 0).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: salg.trailingAnchor, constant: 0).isActive = true
@@ -137,7 +136,7 @@ class CouponRootViewController: UIViewController,
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let size = CGSize(
             width: CouponRootViewController.COUPON_CATEGORY_LIST[indexPath.row].widthOfString(font: UIFont.systemFont(ofSize: 17)),
-            height: CouponRootViewController.COUPON_CATEGORY_LIST[indexPath.row].heightOfString(font: UIFont.systemFont(ofSize: 17)))
+            height: CouponCollectionViewCell.CELL_HEIGHT)
         return size
     }
     
