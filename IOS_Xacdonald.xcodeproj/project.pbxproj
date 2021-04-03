@@ -13,7 +13,6 @@
 		35085BA725FECF20003FCF98 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35085BA625FECF20003FCF98 /* String.swift */; };
 		35392FAB25E2EA9100499653 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35392FAA25E2EA9100499653 /* HomeViewModel.swift */; };
 		35392FAE25E2ECD900499653 /* RecommendedItemSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35392FAD25E2ECD900499653 /* RecommendedItemSet.swift */; };
-		3541893325F4302E00DDAE7E /* CouponRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3541893225F4302E00DDAE7E /* CouponRootViewController.swift */; };
 		3548A11025ED9922000B5024 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3548A10F25ED9922000B5024 /* MainTabBarController.swift */; };
 		3548A11425EDA2AD000B5024 /* CouponViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3548A11325EDA2AD000B5024 /* CouponViewController.swift */; };
 		354D3F9925F17FF100E72722 /* CouponItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354D3F9825F17FF100E72722 /* CouponItemTableViewCell.swift */; };
@@ -21,6 +20,7 @@
 		358F7C3B25DD2A0D00EBA48C /* RecommendedItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358F7C3A25DD2A0D00EBA48C /* RecommendedItemTableViewCell.swift */; };
 		358F7C3F25DD974800EBA48C /* RecommendedItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358F7C3E25DD974800EBA48C /* RecommendedItemView.swift */; };
 		35A34A9425E1904500983CE5 /* LowPriceItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A34A9325E1904500983CE5 /* LowPriceItem.swift */; };
+		35B1F73E2616612B007D6A4B /* CollectionViewPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B1F73D2616612B007D6A4B /* CollectionViewPageViewController.swift */; };
 		35D5E12F2606B2F500846D0F /* CouponDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D5E12E2606B2F500846D0F /* CouponDetailViewController.swift */; };
 		35D5E1322606B94300846D0F /* CouponDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D5E1312606B94300846D0F /* CouponDetailView.swift */; };
 		35E6909025F0B6DE0038C9D8 /* CouponItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E6908F25F0B6DE0038C9D8 /* CouponItem.swift */; };
@@ -43,7 +43,6 @@
 		35085BA625FECF20003FCF98 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		35392FAA25E2EA9100499653 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		35392FAD25E2ECD900499653 /* RecommendedItemSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedItemSet.swift; sourceTree = "<group>"; };
-		3541893225F4302E00DDAE7E /* CouponRootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponRootViewController.swift; sourceTree = "<group>"; };
 		3548A10F25ED9922000B5024 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		3548A11325EDA2AD000B5024 /* CouponViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponViewController.swift; sourceTree = "<group>"; };
 		354D3F9825F17FF100E72722 /* CouponItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponItemTableViewCell.swift; sourceTree = "<group>"; };
@@ -51,6 +50,7 @@
 		358F7C3A25DD2A0D00EBA48C /* RecommendedItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedItemTableViewCell.swift; sourceTree = "<group>"; };
 		358F7C3E25DD974800EBA48C /* RecommendedItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedItemView.swift; sourceTree = "<group>"; };
 		35A34A9325E1904500983CE5 /* LowPriceItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowPriceItem.swift; sourceTree = "<group>"; };
+		35B1F73D2616612B007D6A4B /* CollectionViewPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewPageViewController.swift; sourceTree = "<group>"; };
 		35D5E12E2606B2F500846D0F /* CouponDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponDetailViewController.swift; sourceTree = "<group>"; };
 		35D5E1312606B94300846D0F /* CouponDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponDetailView.swift; sourceTree = "<group>"; };
 		35E6908F25F0B6DE0038C9D8 /* CouponItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponItem.swift; sourceTree = "<group>"; };
@@ -164,8 +164,8 @@
 				389B9B3825875E240082AEBF /* HomeViewController.swift */,
 				3548A10F25ED9922000B5024 /* MainTabBarController.swift */,
 				3548A11325EDA2AD000B5024 /* CouponViewController.swift */,
-				3541893225F4302E00DDAE7E /* CouponRootViewController.swift */,
 				35D5E12E2606B2F500846D0F /* CouponDetailViewController.swift */,
+				35B1F73D2616612B007D6A4B /* CollectionViewPageViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -338,12 +338,12 @@
 				350216B82590D8E500CEA169 /* ItemRepository.swift in Sources */,
 				35392FAB25E2EA9100499653 /* HomeViewModel.swift in Sources */,
 				38B7AEF625875B43003433A5 /* AppDelegate.swift in Sources */,
-				3541893325F4302E00DDAE7E /* CouponRootViewController.swift in Sources */,
 				38B7AEF825875B43003433A5 /* SceneDelegate.swift in Sources */,
 				3548A11425EDA2AD000B5024 /* CouponViewController.swift in Sources */,
 				35E6909325F0B6FB0038C9D8 /* CouponItemRepository.swift in Sources */,
 				35E6909025F0B6DE0038C9D8 /* CouponItem.swift in Sources */,
 				389B9B3925875E240082AEBF /* HomeViewController.swift in Sources */,
+				35B1F73E2616612B007D6A4B /* CollectionViewPageViewController.swift in Sources */,
 				35D5E12F2606B2F500846D0F /* CouponDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

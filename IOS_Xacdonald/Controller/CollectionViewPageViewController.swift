@@ -1,46 +1,42 @@
 //
-//  CouponRootViewController.swift
+//  CollectionViewPageViewController.swift
 //  IOS_Xacdonald
 //
-//  Created by velo.yamigiku on 2021/03/07.
+//  Created by velo.yamigiku on 2021/04/02.
 //  Copyright © 2021 velo.yamigiku. All rights reserved.
 //
 
 import UIKit
 
-class CouponRootViewController: UIViewController,
-                                UICollectionViewDataSource,
-                                UIPageViewControllerDataSource,
-                                UIPageViewControllerDelegate,
-                                UICollectionViewDelegateFlowLayout {
+class CollectionViewPageViewController: UIViewController,
+                                        UICollectionViewDataSource,
+                                        UIPageViewControllerDataSource,
+                                        UIPageViewControllerDelegate,
+                                        UICollectionViewDelegateFlowLayout {
     
-    private static let COUPON_CATEGORY_LIST = [
-        "PS5",
-        "XBox Series X/S",
-        "PS4",
-        "XBox One",
-        "Nintendo Switch",
-        "PS3",
-    ]
-    
-    private static let COUPON_CATEGORY_ID_LIST = [
-        ModelConstant.CATEGORY_ID_PS5,
-        ModelConstant.CATEGORY_ID_XBOX_SERIES_X_S,
-        ModelConstant.CATEGORY_ID_PS4,
-        ModelConstant.CATEGORY_ID_XBOX_ONE,
-        ModelConstant.CATEGORY_ID_SW,
-        ModelConstant.CATEGORY_ID_PS3
-    ]
+    private var tabNameList: [String]!
     
     private var initDidAppearFlag: Bool!
     
     private var pageIdx: Int!
     
-    private var vcListForPVC: [UIViewController]!
+    private var viewControllerList: [UIViewController]!
     
     private var pageViewController: UIPageViewController!
     
     private var collectionView: UICollectionView!
+    
+    init(tabNameList: [String], viewControllerList: [UIViewController]) {
+        super.init(nibName: nil, bundle: nil)
+        self.tabNameList = tabNameList
+        self.viewControllerList = viewControllerList
+        self.initDidAppearFlag = true
+        self.pageIdx = 0
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         if initDidAppearFlag {
@@ -51,10 +47,6 @@ class CouponRootViewController: UIViewController,
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        initDidAppearFlag = true
-        
-        pageIdx = 0
         
         let accountBarButtonItem = UIBarButtonItem(
             image: UIImage(named: "account")?.withRenderingMode(.alwaysOriginal),
@@ -98,16 +90,8 @@ class CouponRootViewController: UIViewController,
         pageViewController.dataSource = self
         pageViewController.delegate = self
         pageViewController.view.translatesAutoresizingMaskIntoConstraints = false
-        var index = 0
-        vcListForPVC = []
-        for couponCategoryID in CouponRootViewController.COUPON_CATEGORY_ID_LIST {
-            print(couponCategoryID)
-            let couponViewController = CouponViewController(couponCategoryID: couponCategoryID, index: index)
-            vcListForPVC.append(couponViewController)
-            index = index + 1
-        }
         pageViewController.setViewControllers(
-            [vcListForPVC[0]],
+            [viewControllerList[0]],
             direction: .forward,
             animated: true,
             completion: nil)
@@ -122,20 +106,20 @@ class CouponRootViewController: UIViewController,
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return CouponRootViewController.COUPON_CATEGORY_LIST.count
+        return tabNameList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: "CouponCollectionViewCell",
             for: indexPath) as! CouponCollectionViewCell
-        cell.label.text = CouponRootViewController.COUPON_CATEGORY_LIST[indexPath.row]
+        cell.label.text = tabNameList[indexPath.row]
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let size = CGSize(
-            width: CouponRootViewController.COUPON_CATEGORY_LIST[indexPath.row].widthOfString(font: UIFont.systemFont(ofSize: 17)),
+            width: tabNameList[indexPath.row].widthOfString(font: UIFont.systemFont(ofSize: 17)),
             height: CouponCollectionViewCell.CELL_HEIGHT)
         return size
     }
@@ -143,7 +127,7 @@ class CouponRootViewController: UIViewController,
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
         pageViewController.setViewControllers(
-            [vcListForPVC[indexPath.row]],
+            [viewControllerList[indexPath.row]],
             direction: pageIdx < indexPath.row ? .forward : .reverse,
             animated: true,
             completion: nil)
@@ -151,16 +135,16 @@ class CouponRootViewController: UIViewController,
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        if let index = vcListForPVC.firstIndex(of: viewController), index > 0 {
-            return vcListForPVC[index - 1]
+        if let index = viewControllerList.firstIndex(of: viewController), index > 0 {
+            return viewControllerList[index - 1]
         } else {
             return nil
         }
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        if let index = vcListForPVC.firstIndex(of: viewController), index < vcListForPVC.count - 1 {
-            return vcListForPVC[index + 1]
+        if let index = viewControllerList.firstIndex(of: viewController), index < viewControllerList.count - 1 {
+            return viewControllerList[index + 1]
         } else {
             return nil
         }
@@ -182,5 +166,5 @@ class CouponRootViewController: UIViewController,
     @objc func tapPointButton() {
         print("tapped Point Button.")
     }
-    
+
 }

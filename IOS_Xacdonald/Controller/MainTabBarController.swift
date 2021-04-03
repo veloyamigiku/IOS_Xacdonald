@@ -9,7 +9,25 @@
 import UIKit
 
 class MainTabBarController: UITabBarController {
-
+    
+    private static let COUPON_CATEGORY_LIST = [
+        "PS5",
+        "XBox Series X/S",
+        "PS4",
+        "XBox One",
+        "Nintendo Switch",
+        "PS3",
+    ]
+    
+    private static let COUPON_CATEGORY_ID_LIST = [
+        ModelConstant.CATEGORY_ID_PS5,
+        ModelConstant.CATEGORY_ID_XBOX_SERIES_X_S,
+        ModelConstant.CATEGORY_ID_PS4,
+        ModelConstant.CATEGORY_ID_XBOX_ONE,
+        ModelConstant.CATEGORY_ID_SW,
+        ModelConstant.CATEGORY_ID_PS3
+    ]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -23,7 +41,19 @@ class MainTabBarController: UITabBarController {
                 image: UIImage(named: "home")?.withRenderingMode(.alwaysOriginal),
                 selectedImage: UIImage(named: "home_active")?.withRenderingMode(.alwaysOriginal))
 
-        let couponRootViewController = CouponRootViewController()
+        var couponViewControllerIndex = 0
+        var couponViewControllerList: [UIViewController] = []
+        for couponCategoryID in MainTabBarController.COUPON_CATEGORY_ID_LIST {
+            print(couponCategoryID)
+            let couponViewController = CouponViewController(
+                couponCategoryID: couponCategoryID,
+                index: couponViewControllerIndex)
+            couponViewControllerList.append(couponViewController)
+            couponViewControllerIndex = couponViewControllerIndex + 1
+        }
+        let couponRootViewController = CollectionViewPageViewController(
+            tabNameList: MainTabBarController.COUPON_CATEGORY_LIST,
+            viewControllerList: couponViewControllerList)
         let couponNavigationController = UINavigationController()
         couponNavigationController.viewControllers = [couponRootViewController]
         couponNavigationController.tabBarItem = UITabBarItem(
