@@ -10,22 +10,22 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class CouponViewController: UIViewController, UITableViewDataSource, CouponItemTableViewCellDelegate {
+class CouponViewController: CVPVCViewController, UITableViewDataSource, CouponItemTableViewCellDelegate {
     
-    private var couponCategoryID: String
+    private var couponCategoryID: String!
     private var tableView: UITableView!
-    private var couponViewModel: CouponViewModel
-    private var disposeBag: DisposeBag
-    private var couponItems: [CouponItem]
+    private var couponViewModel: CouponViewModel!
+    private var disposeBag: DisposeBag!
+    private var couponItems: [CouponItem]!
     private var index: Int!
     
     init(couponCategoryID: String, index: Int) {
+        super.init(index: index)
         self.couponCategoryID = couponCategoryID
         self.index = index
         self.couponViewModel = CouponViewModel()
         self.disposeBag = DisposeBag()
         self.couponItems = []
-        super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
@@ -72,10 +72,6 @@ class CouponViewController: UIViewController, UITableViewDataSource, CouponItemT
         cell.couponItemIdx = indexPath.row
         cell.delegate = self
         return cell
-    }
-    
-    func getIndex() -> Int {
-        return index
     }
     
     func tapItemDescButton(itemIdx: Int) {

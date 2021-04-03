@@ -11,12 +11,12 @@ import UIKit
 class MainTabBarController: UITabBarController {
     
     private static let COUPON_CATEGORY_LIST = [
-        "PS5",
-        "XBox Series X/S",
-        "PS4",
-        "XBox One",
-        "Nintendo Switch",
-        "PS3",
+        ModelConstant.CATEGORY_PS5,
+        ModelConstant.CATEGORY_XBOX_SERIES_X_S,
+        ModelConstant.CATEGORY_PS4,
+        ModelConstant.CATEGORY_XBOX_ONE,
+        ModelConstant.CATEGORY_SW,
+        ModelConstant.CATEGORY_PS3
     ]
     
     private static let COUPON_CATEGORY_ID_LIST = [
@@ -27,6 +27,67 @@ class MainTabBarController: UITabBarController {
         ModelConstant.CATEGORY_ID_SW,
         ModelConstant.CATEGORY_ID_PS3
     ]
+    
+    private static let MENU_CATEGORY_LIST = [
+        ModelConstant.CATEGORY_PS5,
+        ModelConstant.CATEGORY_XBOX_SERIES_X_S,
+        ModelConstant.CATEGORY_PS4,
+        ModelConstant.CATEGORY_XBOX_ONE,
+        ModelConstant.CATEGORY_SW,
+        ModelConstant.CATEGORY_PS3
+    ]
+    
+    private static let MENU_LIST: [Menu] = [
+        Menu(
+            id: ModelConstant.CATEGORY_ID_PS5,
+            keywordList: [
+                ModelConstant.GENRE_ACTION,
+                ModelConstant.GENRE_FPS,
+                ModelConstant.GENRE_RPG,
+                ModelConstant.GENRE_ADVENTURE,
+                ModelConstant.GENRE_SHOOTING]),
+        Menu(
+            id: ModelConstant.CATEGORY_ID_XBOX_SERIES_X_S,
+            keywordList: [
+                ModelConstant.GENRE_ACTION,
+                ModelConstant.GENRE_FPS,
+                ModelConstant.GENRE_RPG,
+                ModelConstant.GENRE_ADVENTURE,
+                ModelConstant.GENRE_SHOOTING]),
+        Menu(
+            id: ModelConstant.CATEGORY_ID_PS4,
+            keywordList: [
+                ModelConstant.GENRE_ACTION,
+                ModelConstant.GENRE_FPS,
+                ModelConstant.GENRE_RPG,
+                ModelConstant.GENRE_ADVENTURE,
+                ModelConstant.GENRE_SHOOTING]),
+        Menu(
+            id: ModelConstant.CATEGORY_ID_XBOX_ONE,
+            keywordList: [
+                ModelConstant.GENRE_ACTION,
+                ModelConstant.GENRE_FPS,
+                ModelConstant.GENRE_RPG,
+                ModelConstant.GENRE_ADVENTURE,
+                ModelConstant.GENRE_SHOOTING]),
+        Menu(
+            id: ModelConstant.CATEGORY_ID_SW,
+            keywordList: [
+                ModelConstant.GENRE_ACTION,
+                ModelConstant.GENRE_FPS,
+                ModelConstant.GENRE_RPG,
+                ModelConstant.GENRE_ADVENTURE,
+                ModelConstant.GENRE_SHOOTING]),
+        Menu(
+            id: ModelConstant.CATEGORY_ID_PS3,
+            keywordList: [
+                ModelConstant.GENRE_ACTION,
+                ModelConstant.GENRE_FPS,
+                ModelConstant.GENRE_RPG,
+                ModelConstant.GENRE_ADVENTURE,
+                ModelConstant.GENRE_SHOOTING])
+    ]
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,9 +103,8 @@ class MainTabBarController: UITabBarController {
                 selectedImage: UIImage(named: "home_active")?.withRenderingMode(.alwaysOriginal))
 
         var couponViewControllerIndex = 0
-        var couponViewControllerList: [UIViewController] = []
+        var couponViewControllerList: [CVPVCViewController] = []
         for couponCategoryID in MainTabBarController.COUPON_CATEGORY_ID_LIST {
-            print(couponCategoryID)
             let couponViewController = CouponViewController(
                 couponCategoryID: couponCategoryID,
                 index: couponViewControllerIndex)
@@ -61,7 +121,28 @@ class MainTabBarController: UITabBarController {
                 image: UIImage(named: "coupon")?.withRenderingMode(.alwaysOriginal),
                 selectedImage: UIImage(named: "coupon_active")?.withRenderingMode(.alwaysOriginal))
         
-        viewControllers = [homeNavigationViewController, couponNavigationController]
+        var menuViewControllerIndex = 0
+        var menuViewControllerList: [CVPVCViewController] = []
+        for menu in MainTabBarController.MENU_LIST {
+            let menuViewController = MenuViewController(menu: menu, index: menuViewControllerIndex)
+            menuViewControllerList.append(menuViewController)
+            menuViewControllerIndex += 1
+        }
+        let menuRootViewController = CollectionViewPageViewController(
+            tabNameList: MainTabBarController.MENU_CATEGORY_LIST,
+            viewControllerList: menuViewControllerList)
+        let menuNavigationController = UINavigationController()
+        menuNavigationController.viewControllers = [menuRootViewController]
+        menuNavigationController.tabBarItem = UITabBarItem(
+            title: "",
+            image: UIImage(named: "menu")?.withRenderingMode(.alwaysOriginal),
+            selectedImage: UIImage(named: "menu_active")?.withRenderingMode(.alwaysOriginal))
+        
+        viewControllers = [
+            homeNavigationViewController,
+            couponNavigationController,
+            menuNavigationController
+        ]
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {

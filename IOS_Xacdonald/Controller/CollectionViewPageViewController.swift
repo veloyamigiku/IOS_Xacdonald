@@ -20,13 +20,13 @@ class CollectionViewPageViewController: UIViewController,
     
     private var pageIdx: Int!
     
-    private var viewControllerList: [UIViewController]!
+    private var viewControllerList: [CVPVCViewController]!
     
     private var pageViewController: UIPageViewController!
     
     private var collectionView: UICollectionView!
     
-    init(tabNameList: [String], viewControllerList: [UIViewController]) {
+    init(tabNameList: [String], viewControllerList: [CVPVCViewController]) {
         super.init(nibName: nil, bundle: nil)
         self.tabNameList = tabNameList
         self.viewControllerList = viewControllerList
@@ -135,7 +135,7 @@ class CollectionViewPageViewController: UIViewController,
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        if let index = viewControllerList.firstIndex(of: viewController), index > 0 {
+        if let index = viewControllerList.firstIndex(of: viewController as! CVPVCViewController), index > 0 {
             return viewControllerList[index - 1]
         } else {
             return nil
@@ -143,7 +143,7 @@ class CollectionViewPageViewController: UIViewController,
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        if let index = viewControllerList.firstIndex(of: viewController), index < viewControllerList.count - 1 {
+        if let index = viewControllerList.firstIndex(of: viewController as! CVPVCViewController), index < viewControllerList.count - 1 {
             return viewControllerList[index + 1]
         } else {
             return nil
@@ -151,12 +151,12 @@ class CollectionViewPageViewController: UIViewController,
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        let couponViewController = pageViewController.viewControllers?.first as! CouponViewController
+        let viewController = pageViewController.viewControllers?.first as! CVPVCViewController
         collectionView.selectItem(
-            at: IndexPath(row: couponViewController.getIndex(), section: 0),
+            at: IndexPath(row: viewController.getIndex(), section: 0),
             animated: true,
             scrollPosition: .centeredHorizontally)
-        pageIdx = couponViewController.getIndex()
+        pageIdx = viewController.getIndex()
     }
     
     @objc func tapAccountButton() {
