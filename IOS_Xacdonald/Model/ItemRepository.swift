@@ -31,9 +31,7 @@ class ItemRepository {
     func getLowPriceItem() -> Observable<[LowPriceItem]> {
         
         let observable = lowPriceItemSubject.asObservable()
-        
-        let httpGet = HttpGet()
-        httpGet.exec(
+        HttpGet.exec(
             url: itemSearchUrl,
             query: [
                 "appid": "dj00aiZpPWVheHgxT3VmSmp0eSZzPWNvbnN1bWVyc2VjcmV0Jng9YzU-",
@@ -69,9 +67,7 @@ class ItemRepository {
     func getRecommendedItem() -> Observable<[RecommendedItem]> {
         
         let observable = recommendedItemSubject.asObservable()
-        
-        let httpGet = HttpGet()
-        httpGet.exec(
+        HttpGet.exec(
             url: itemSearchUrl,
             query: [
                 "appid": "dj00aiZpPWVheHgxT3VmSmp0eSZzPWNvbnN1bWVyc2VjcmV0Jng9YzU-",

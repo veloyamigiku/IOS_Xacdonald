@@ -29,9 +29,7 @@ class CouponItemRepository {
     func getCouponItem(categoryID: String) -> Observable<[CouponItem]> {
         
         let couponItemObserver = couponItemSubject.asObserver()
-        
-        let httpGet = HttpGet()
-        httpGet.exec(
+        HttpGet.exec(
             url: ModelConstant.ITEM_SEARCH_URL,
             query: [
                 "appid": ModelConstant.APP_ID,

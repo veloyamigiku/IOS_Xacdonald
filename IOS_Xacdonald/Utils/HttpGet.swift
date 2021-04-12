@@ -12,13 +12,7 @@ import RxRelay
 
 class HttpGet {
     
-    private var getDataRelay: PublishRelay<Data>
-    
-    init() {
-        self.getDataRelay = PublishRelay()
-    }
-    
-    private func createQueryItems(query: [String: String]) -> [URLQueryItem] {
+    private static func createQueryItems(query: [String: String]) -> [URLQueryItem] {
         var queryItems = [URLQueryItem]()
         for (queryItemName, queryItemValue) in query {
             queryItems.append(URLQueryItem(name: queryItemName, value: queryItemValue))
@@ -26,7 +20,9 @@ class HttpGet {
         return queryItems
     }
     
-    func exec(url: String, query: [String: String]) -> Observable<Data> {
+    static func exec(url: String, query: [String: String]) -> Observable<Data> {
+        let subject = PublishSubject<Data>()
+        let observable = subject.asObserver()
         var urlComponents = URLComponents(string: url)
         urlComponents?.queryItems = createQueryItems(query: query)
         let query = urlComponents?.query
@@ -40,11 +36,12 @@ class HttpGet {
         let request = URLRequest(url: (urlComponents?.url)!)
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             guard let data = data else { return }
-            self.getDataRelay.accept(data)
+            subject.onNext(data)
+            subject.onCompleted()
             print(data)
         }.resume()
         
-        return getDataRelay.asObservable()
+        return observable
     }
     
 }
