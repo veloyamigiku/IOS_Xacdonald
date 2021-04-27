@@ -29,14 +29,25 @@ class MainTabBarController: UITabBarController {
     ]
     
     private static let MENU_CATEGORY_LIST = [
-        ModelConstant.CATEGORY_PS5,
-        ModelConstant.CATEGORY_XBOX_SERIES_X_S,
-        ModelConstant.CATEGORY_PS4,
-        ModelConstant.CATEGORY_XBOX_ONE,
-        ModelConstant.CATEGORY_SW,
-        ModelConstant.CATEGORY_PS3
+        ModelConstant.CATEGORY_FOOD,
+        ModelConstant.CATEGORY_DEVICE,
+        ModelConstant.CATEGORY_HOME_APPLIANCE,
+        ModelConstant.CATEGORY_FURNITURE,
+        ModelConstant.CATEGORY_BOOK,
+        ModelConstant.CATEGORY_SPORT,
+        ModelConstant.CATEGORY_GAME
     ]
     
+    private static let MENU_CATEGORY_ID_LIST = [
+        ModelConstant.CATEGORY_ID_FOOD,
+        ModelConstant.CATEGORY_ID_DEVICE,
+        ModelConstant.CATEGORY_ID_HOME_APPLIANCE,
+        ModelConstant.CATEGORY_ID_FURNITURE,
+        ModelConstant.CATEGORY_ID_BOOK,
+        ModelConstant.CATEGORY_ID_SPORT,
+        ModelConstant.CATEGORY_ID_GAME
+    ]
+    /*
     private static let MENU_LIST: [Menu] = [
         Menu(
             id: ModelConstant.CATEGORY_ID_PS5,
@@ -87,7 +98,7 @@ class MainTabBarController: UITabBarController {
                 ModelConstant.GENRE_ADVENTURE,
                 ModelConstant.GENRE_SHOOTING])
     ]
-    
+    */
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -95,7 +106,8 @@ class MainTabBarController: UITabBarController {
         view.backgroundColor = .white
         
         let homeViewController = HomeViewController()
-        let homeNavigationViewController = UINavigationController()
+        //let homeNavigationViewController = UINavigationController()
+        let homeNavigationViewController =  NavigationController()
         homeNavigationViewController.viewControllers = [homeViewController]
         homeNavigationViewController.tabBarItem = UITabBarItem(
                 title: "",
@@ -114,7 +126,8 @@ class MainTabBarController: UITabBarController {
         let couponRootViewController = CollectionViewPageViewController(
             tabNameList: MainTabBarController.COUPON_CATEGORY_LIST,
             viewControllerList: couponViewControllerList)
-        let couponNavigationController = UINavigationController()
+        //let couponNavigationController = UINavigationController()
+        let couponNavigationController = NavigationController()
         couponNavigationController.viewControllers = [couponRootViewController]
         couponNavigationController.tabBarItem = UITabBarItem(
                 title: "",
@@ -123,15 +136,18 @@ class MainTabBarController: UITabBarController {
         
         var menuViewControllerIndex = 0
         var menuViewControllerList: [CVPVCViewController] = []
-        for menu in MainTabBarController.MENU_LIST {
-            let menuViewController = MenuViewController(menu: menu, index: menuViewControllerIndex)
+        for menuCategoryID in MainTabBarController.MENU_CATEGORY_ID_LIST {
+            let menuViewController = MenuViewController(
+                categoryID: menuCategoryID,
+                index: menuViewControllerIndex)
             menuViewControllerList.append(menuViewController)
             menuViewControllerIndex += 1
         }
         let menuRootViewController = CollectionViewPageViewController(
             tabNameList: MainTabBarController.MENU_CATEGORY_LIST,
             viewControllerList: menuViewControllerList)
-        let menuNavigationController = UINavigationController()
+        //let menuNavigationController = UINavigationController()
+        let menuNavigationController = NavigationController()
         menuNavigationController.viewControllers = [menuRootViewController]
         menuNavigationController.tabBarItem = UITabBarItem(
             title: "",

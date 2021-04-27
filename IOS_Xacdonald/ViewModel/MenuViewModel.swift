@@ -11,23 +11,23 @@ import RxSwift
 
 class MenuViewModel {
     
-    func getMenuItemWithKeywordRanking(catetoryID: String) -> Observable<[[MenuItem]]> {
-        let subject = PublishSubject<[[MenuItem]]>()
+    func getMenuItemWithKeywordRanking(catetoryID: String) -> Observable<[MenuItemsWithKeywordRanking]> {
+        let subject = PublishSubject<[MenuItemsWithKeywordRanking]>()
         let observable = subject.asObserver()
         MenuItemRepository.getKeywordRanking(categoryID: catetoryID)
-            .flatMap({ keyword -> Observable<[[MenuItem]]> in
-                var observableList: [Observable<[MenuItem]>] = []
-                for k in keyword {
-                    let observable = MenuItemRepository.getMenuItem(
+            .flatMap({ keywordRanking -> Observable<[MenuItemsWithKeywordRanking]> in
+                var observableList: [Observable<MenuItemsWithKeywordRanking>] = []
+                for kr in keywordRanking {
+                    let observable = MenuItemRepository.getMenuItemsWithKeywordRanking(
                         categoryID: catetoryID,
-                        query: k)
+                        keywordRanking: kr)
                     observableList.append(observable)
                 }
                 return Observable.zip(observableList)
             }).subscribe(
-                onNext: { menuItem in
+                onNext: { menuItemsWithKeywordRanking in
                     print("===MenuViewModel next===")
-                    subject.onNext(menuItem)
+                    subject.onNext(menuItemsWithKeywordRanking)
                     subject.onCompleted()
                 },
                 onError: { error in

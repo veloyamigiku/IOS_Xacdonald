@@ -12,8 +12,8 @@ import SwiftyJSON
 
 class MenuItemRepository {
     
-   static func getKeywordRanking(categoryID: String) -> Observable<[String]> {
-        let subject = PublishSubject<[String]>()
+   static func getKeywordRanking(categoryID: String) -> Observable<[KeywordRanking]> {
+        let subject = PublishSubject<[KeywordRanking]>()
         let observable = subject.asObserver()
         HttpGet.exec(
             url: ModelConstant.KEYWORD_RANKING_URL,
@@ -26,9 +26,13 @@ class MenuItemRepository {
                     do {
                         let json = try JSON(data: data)
                         let totalResultsReturned = json["ResultSet"]["totalResultsReturned"].intValue
-                        var keywordList: [String] = []
+                        //print(json["ResultSet"]["0"]["Result"]["0"]["_attributes"])
+                        var keywordList: [KeywordRanking] = []
                         for i in 0 ..< totalResultsReturned {
-                            keywordList.append(json["ResultSet"]["0"]["Result"][String(i)]["Query"].stringValue)
+                            keywordList.append(
+                                KeywordRanking(
+                                    keyword: json["ResultSet"]["0"]["Result"][String(i)]["Query"].stringValue,
+                                    ranking: json["ResultSet"]["0"]["Result"][String(i)]["_attributes"]["rank"].intValue))
                         }
                         subject.onNext(keywordList)
                         subject.onCompleted()
@@ -50,8 +54,8 @@ class MenuItemRepository {
         return observable
     }
     
-    static func getMenuItem(categoryID: String, query: String) -> Observable<[MenuItem]> {
-        let subject = PublishSubject<[MenuItem]>()
+    static func getMenuItemsWithKeywordRanking(categoryID: String, keywordRanking: KeywordRanking) -> Observable<MenuItemsWithKeywordRanking> {
+        let subject = PublishSubject<MenuItemsWithKeywordRanking>()
         let observable = subject.asObserver()
         HttpGet.exec(
             url: ModelConstant.ITEM_SEARCH_URL,
@@ -63,7 +67,7 @@ class MenuItemRepository {
                 "results": "10",
                 "condition": "new",
                 "is_discount": "true",
-                "query": query
+                "query": keywordRanking.keyword
             ]).subscribe(
                 onNext: { data in
                     do {
@@ -74,10 +78,14 @@ class MenuItemRepository {
                             menuItems.append(MenuItem(
                                                 imageUrl: jsonHit["exImage"]["url"].stringValue,
                                                 name: jsonHit["name"].stringValue,
+                                                description: jsonHit["description"].stringValue,
                                                 price: jsonHit["price"].intValue))
                         }
+                        let menuItemsWithKeywordRanking = MenuItemsWithKeywordRanking(
+                            MenuItems: menuItems,
+                            keywordRanking: keywordRanking)
                         print("===MenuItemRepository next===")
-                        subject.onNext(menuItems)
+                        subject.onNext(menuItemsWithKeywordRanking)
                         subject.onCompleted()
                     } catch let jsonError {
                         print(jsonError)
