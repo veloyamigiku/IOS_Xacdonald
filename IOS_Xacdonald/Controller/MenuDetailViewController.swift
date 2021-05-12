@@ -130,7 +130,9 @@ class MenuDetailViewController: UIViewController {
         order.translatesAutoresizingMaskIntoConstraints = false
         order.rx.tap.subscribe(
             onNext: {
-                // order tapped process
+                self.navigationController?.pushViewController(
+                    ShopViewController(menuItem: self.menuItem),
+                    animated: true)
             }).disposed(by: disposeBag)
         view.addSubview(order)
         order.topAnchor.constraint(equalTo: detailInfo.bottomAnchor, constant: 20).isActive = true
