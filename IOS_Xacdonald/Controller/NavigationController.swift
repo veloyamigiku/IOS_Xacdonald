@@ -12,6 +12,9 @@ class NavigationController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // ナビゲーションバーのアイテム（戻るボタン等）の色を設定する？
+        navigationBar.tintColor = UIColor.black
     }
     
     override func pushViewController(_ viewController: UIViewController, animated: Bool) {

@@ -12,7 +12,7 @@ import SwiftyJSON
 
 class MenuItemRepository {
     
-   static func getKeywordRanking(categoryID: String) -> Observable<[KeywordRanking]> {
+    static func getKeywordRanking(categoryID: String) -> Observable<[KeywordRanking]> {
         let subject = PublishSubject<[KeywordRanking]>()
         let observable = subject.asObserver()
         HttpGet.exec(
@@ -75,11 +75,32 @@ class MenuItemRepository {
                         let jsonHits = json["hits"]
                         var menuItems: [MenuItem] = []
                         for (_, jsonHit) in jsonHits {
+                            //print(jsonHit)
+                            /*menuItems.append(MenuItem(
+                                                imageUrl: jsonHit["exImage"]["url"].stringValue,
+                                                name: jsonHit["name"].stringValue,
+                                                description: jsonHit["description"].stringValue,
+                                                price: jsonHit["price"].intValue,
+                                                janCode: jsonHit["janCode"].stringValue,
+                                                sellerID: jsonHit["seller"]["sellerId"].stringValue))*/
                             menuItems.append(MenuItem(
                                                 imageUrl: jsonHit["exImage"]["url"].stringValue,
                                                 name: jsonHit["name"].stringValue,
                                                 description: jsonHit["description"].stringValue,
-                                                price: jsonHit["price"].intValue))
+                                                price: jsonHit["price"].intValue,
+                                                reviewRate: jsonHit["review"]["rate"].floatValue,
+                                                reviewCount: jsonHit["review"]["count"].intValue,
+                                                pointAmount: jsonHit["point"]["amount"].intValue,
+                                                pointTimes: jsonHit["point"]["times"].intValue,
+                                                pointBonusAmount: jsonHit["point"]["bonusAmount"].intValue,
+                                                pointBonusTimes: jsonHit["point"]["bonusTimes"].intValue,
+                                                pointPremiumAmount: jsonHit["point"]["premiumAmount"].intValue,
+                                                pointPremiumTimes: jsonHit["point"]["premiumTimes"].intValue,
+                                                pointPremiumBonusAmount: jsonHit["point"]["premiumBonusAmount"].intValue,
+                                                pointPremiumBonusTimes: jsonHit["point"]["premiumBonusTimes"].intValue,
+                                                sellerName: jsonHit["seller"]["name"].stringValue,
+                                                sellerReviewRate: jsonHit["seller"]["review"]["rate"].floatValue,
+                                                sellerReviewCount: jsonHit["seller"]["review"]["count"].intValue))
                         }
                         let menuItemsWithKeywordRanking = MenuItemsWithKeywordRanking(
                             MenuItems: menuItems,

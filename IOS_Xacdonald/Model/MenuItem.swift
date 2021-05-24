@@ -13,4 +13,17 @@ struct MenuItem {
     var name: String
     var description: String
     var price: Int
+    var reviewRate: Float
+    var reviewCount: Int
+    var pointAmount: Int
+    var pointTimes: Int
+    var pointBonusAmount: Int
+    var pointBonusTimes: Int
+    var pointPremiumAmount: Int
+    var pointPremiumTimes: Int
+    var pointPremiumBonusAmount: Int
+    var pointPremiumBonusTimes: Int
+    var sellerName: String
+    var sellerReviewRate: Float
+    var sellerReviewCount: Int
 }

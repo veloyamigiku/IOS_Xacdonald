@@ -11,7 +11,40 @@ import PINRemoteImage
 import RxSwift
 import RxCocoa
 
+enum MenuDetailViewControllerError: Error {
+    case implementBug
+}
+
 class MenuDetailViewController: UIViewController {
+    
+    private static let MENU_ITEM_DETAIL_HEADER_REVIEW = "レビュー"
+    private static let MENU_ITEM_DETAIL_ITEM_REVIEW_RATE = "レビュー平均"
+    private static let MENU_ITEM_DETAIL_ITEM_REVIEW_COUNT = "レビュー件数"
+    private static let MENU_ITEM_DETAIL_HEADER_POINT = "ポイント"
+    private static let MENU_ITEM_DETAIL_ITEM_POINT_AMOUNT = "基本ポイント数"
+    private static let MENU_ITEM_DETAIL_ITEM_POINT_TIMES = "基本ポイント倍率"
+    private static let MENU_ITEM_DETAIL_ITEM_POINT_BONUS_AMOUNT = "ストアボーナス数"
+    private static let MENU_ITEM_DETAIL_ITEM_POINT_BONUS_TIMES = "ストアボーナス倍率"
+    private static let MENU_ITEM_DETAIL_ITEM_POINT_PREMIUM_AMOUNT = "プレミアム会員向けの基本ポイント数"
+    private static let MENU_ITEM_DETAIL_ITEM_POINT_PREMIUM_TIMES = "プレミアム会員向けの基本ポイント倍率"
+    private static let MENU_ITEM_DETAIL_ITEM_POINT_PREMIUM_BONUS_AMOUNT = "プレミアム会員向けのストアボーナス数"
+    private static let MENU_ITEM_DETAIL_ITEM_POINT_PREMIUM_BONUS_TIMES = "プレミアム会員向けのストアボーナス倍率"
+    private static let MENU_ITEM_DETAIL_HEADER_SELLER = "ストア"
+    private static let MENU_ITEM_DETAIL_ITEM_SELLER_NAME = "ストア名"
+    private static let MENU_ITEM_DETAIL_ITEM_SELLER_RATE = "レビュー平均"
+    private static let MENU_ITEM_DETAIL_ITEM_SELLER_COUNT = "レビュー件数"
+    
+    private static let MENU_DETAIL_INFO_TAB_LIST = [
+        ModelConstant.MENU_DETAIL_INFO_TAB_DETAIL1,
+        ModelConstant.MENU_DETAIL_INFO_TAB_DETAIL2,
+        ModelConstant.MENU_DETAIL_INFO_TAB_DETAIL3
+    ]
+    
+    private static let MENU_DETAIL_INFO_TYPE_LIST = [
+        ModelConstant.MENU_DETAIL_INFO_TYPE_DETAIL1,
+        ModelConstant.MENU_DETAIL_INFO_TYPE_DETAIL2,
+        ModelConstant.MENU_DETAIL_INFO_TYPE_DETAIL3,
+    ]
     
     private var menuItem: MenuItem!
     private var disposeBag: DisposeBag!
@@ -82,7 +115,23 @@ class MenuDetailViewController: UIViewController {
         detailInfo.rx.tap
             .subscribe(
                 onNext: {
-                    // detailInfo tapped process
+                    var menuDetailInfoViewControllerIndex = 0
+                    var menuDetailInfoViewControllers: [MenuDetailInfoViewController] = []
+                    for menuDetailInfoType in MenuDetailViewController.MENU_DETAIL_INFO_TYPE_LIST {
+                        let menuItemDetailData = self.fromMenuDetailInfoTypeToMenuDetailItemData(
+                            menuDetailInfoType: menuDetailInfoType,
+                            menuItem: self.menuItem)
+                        menuDetailInfoViewControllers.append(
+                            MenuDetailInfoViewController(
+                                menuItemDetailData: menuItemDetailData,
+                                index: menuDetailInfoViewControllerIndex))
+                        menuDetailInfoViewControllerIndex += 1                  
+                    }
+                    let menuDetailInfoRootViewController = CVPVCViewControllerB(
+                        tabNameList: MenuDetailViewController.MENU_DETAIL_INFO_TAB_LIST,
+                        viewControllerList: menuDetailInfoViewControllers)
+                    menuDetailInfoRootViewController.title = self.menuItem.name
+                    self.navigationController?.pushViewController(menuDetailInfoRootViewController, animated: true)
                 })
             .disposed(by: disposeBag)
         view.addSubview(detailInfo)
@@ -138,6 +187,85 @@ class MenuDetailViewController: UIViewController {
         order.topAnchor.constraint(equalTo: detailInfo.bottomAnchor, constant: 20).isActive = true
         order.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
         order.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10).isActive = true
+    }
+    
+    private func fromMenuDetailInfoTypeToMenuDetailItemData(menuDetailInfoType: Int, menuItem: MenuItem) -> [MenuItemDetailData] {
+        switch menuDetailInfoType {
+        case ModelConstant.MENU_DETAIL_INFO_TYPE_DETAIL1:
+            let midhReview = MenuItemDetailHeader(label: MenuDetailViewController.MENU_ITEM_DETAIL_HEADER_REVIEW)
+            let midiReviewRate = MenuItemDetailItem(
+                label: MenuDetailViewController.MENU_ITEM_DETAIL_ITEM_REVIEW_RATE,
+                value: String(menuItem.reviewRate))
+            let midiReviewCount = MenuItemDetailItem(
+                label: MenuDetailViewController.MENU_ITEM_DETAIL_ITEM_REVIEW_COUNT,
+                value: String(menuItem.reviewCount))
+            return [MenuItemDetailData(
+                        menuItemDetailHeader: midhReview,
+                        menuItemDetailItems: [
+                            midiReviewRate,
+                            midiReviewCount])]
+        case ModelConstant.MENU_DETAIL_INFO_TYPE_DETAIL2:
+            let midhPoint = MenuItemDetailHeader(label: MenuDetailViewController.MENU_ITEM_DETAIL_HEADER_POINT)
+            let midiPointAmont = MenuItemDetailItem(
+                label: MenuDetailViewController.MENU_ITEM_DETAIL_ITEM_POINT_AMOUNT,
+                value: String(menuItem.pointAmount))
+            let midiPointTimes = MenuItemDetailItem(
+                label: MenuDetailViewController.MENU_ITEM_DETAIL_ITEM_POINT_TIMES,
+                value: String(menuItem.pointTimes))
+            let midiPointBonusAmount = MenuItemDetailItem(
+                label: MenuDetailViewController.MENU_ITEM_DETAIL_ITEM_POINT_BONUS_AMOUNT,
+                value: String(menuItem.pointBonusAmount))
+            let midiPointBonusTimes = MenuItemDetailItem(
+                label: MenuDetailViewController.MENU_ITEM_DETAIL_ITEM_POINT_BONUS_TIMES,
+                value: String(menuItem.pointBonusTimes))
+            let midiPointPremiumAmount = MenuItemDetailItem(
+                label: MenuDetailViewController.MENU_ITEM_DETAIL_ITEM_POINT_PREMIUM_AMOUNT,
+                value: String(menuItem.pointPremiumAmount))
+            let midiPointPremiumTimes = MenuItemDetailItem(
+                label: MenuDetailViewController.MENU_ITEM_DETAIL_ITEM_POINT_PREMIUM_TIMES,
+                value: String(menuItem.pointPremiumTimes))
+            let midiPointPremiumBonusAmount = MenuItemDetailItem(
+                label: MenuDetailViewController.MENU_ITEM_DETAIL_ITEM_POINT_PREMIUM_BONUS_AMOUNT,
+                value: String(menuItem.pointPremiumBonusAmount))
+            let midiPointPremiumBonusTimes = MenuItemDetailItem(
+                label: MenuDetailViewController.MENU_ITEM_DETAIL_ITEM_POINT_PREMIUM_BONUS_TIMES,
+                value: String(menuItem.pointPremiumBonusTimes))
+            return [MenuItemDetailData(
+                        menuItemDetailHeader: midhPoint,
+                        menuItemDetailItems: [
+                            midiPointAmont,
+                            midiPointTimes,
+                            midiPointBonusAmount,
+                            midiPointBonusTimes,
+                            midiPointPremiumAmount,
+                            midiPointPremiumTimes,
+                            midiPointPremiumBonusAmount,
+                            midiPointPremiumBonusTimes])]
+        case ModelConstant.MENU_DETAIL_INFO_TYPE_DETAIL3:
+            let midhSeller = MenuItemDetailHeader(label: MenuDetailViewController.MENU_ITEM_DETAIL_HEADER_SELLER)
+            let midiSellerName = MenuItemDetailItem(
+                label: MenuDetailViewController.MENU_ITEM_DETAIL_ITEM_SELLER_NAME,
+                value: String(menuItem.sellerName))
+            let midiSellerReviewRate = MenuItemDetailItem(
+                label: MenuDetailViewController.MENU_ITEM_DETAIL_ITEM_SELLER_RATE,
+                value: String(menuItem.sellerReviewRate))
+            let midiSellerReviewCount = MenuItemDetailItem(
+                label: MenuDetailViewController.MENU_ITEM_DETAIL_ITEM_SELLER_COUNT,
+                value: String(menuItem.sellerReviewCount))
+            return [MenuItemDetailData(
+                        menuItemDetailHeader: midhSeller,
+                        menuItemDetailItems: [
+                            midiSellerName,
+                            midiSellerReviewRate,
+                            midiSellerReviewCount])]
+        default:
+            do {
+                throw MenuDetailViewControllerError.implementBug
+            } catch let error {
+                print(error)
+                return []
+            }
+        }
     }
     
 }

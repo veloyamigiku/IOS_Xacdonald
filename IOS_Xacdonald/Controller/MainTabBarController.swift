@@ -123,10 +123,9 @@ class MainTabBarController: UITabBarController {
             couponViewControllerList.append(couponViewController)
             couponViewControllerIndex = couponViewControllerIndex + 1
         }
-        let couponRootViewController = CollectionViewPageViewController(
+        let couponRootViewController = CVPVCViewControllerA(
             tabNameList: MainTabBarController.COUPON_CATEGORY_LIST,
             viewControllerList: couponViewControllerList)
-        //let couponNavigationController = UINavigationController()
         let couponNavigationController = NavigationController()
         couponNavigationController.viewControllers = [couponRootViewController]
         couponNavigationController.tabBarItem = UITabBarItem(
@@ -143,10 +142,9 @@ class MainTabBarController: UITabBarController {
             menuViewControllerList.append(menuViewController)
             menuViewControllerIndex += 1
         }
-        let menuRootViewController = CollectionViewPageViewController(
+        let menuRootViewController = CVPVCViewControllerA(
             tabNameList: MainTabBarController.MENU_CATEGORY_LIST,
             viewControllerList: menuViewControllerList)
-        //let menuNavigationController = UINavigationController()
         let menuNavigationController = NavigationController()
         menuNavigationController.viewControllers = [menuRootViewController]
         menuNavigationController.tabBarItem = UITabBarItem(

@@ -50,5 +50,13 @@ class ModelConstant {
     static let GENRE_RPG = "ロールプレイング"
     static let GENRE_ADVENTURE = "アドベンチャー"
     static let GENRE_SHOOTING = "シューティング"
-
+    
+    static let MENU_DETAIL_INFO_TAB_DETAIL1 = "詳細情報1"
+    static let MENU_DETAIL_INFO_TAB_DETAIL2 = "詳細情報2"
+    static let MENU_DETAIL_INFO_TAB_DETAIL3 = "詳細情報3"
+    
+    static let MENU_DETAIL_INFO_TYPE_DETAIL1 = 1
+    static let MENU_DETAIL_INFO_TYPE_DETAIL2 = 2
+    static let MENU_DETAIL_INFO_TYPE_DETAIL3 = 3
+    
 }

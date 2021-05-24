@@ -1,20 +1,20 @@
 //
-//  CollectionViewPageViewController.swift
+//  CVPVCBaseViewController.swift
 //  IOS_Xacdonald
 //
-//  Created by velo.yamigiku on 2021/04/02.
+//  Created by velo.yamigiku on 2021/05/16.
 //  Copyright © 2021 velo.yamigiku. All rights reserved.
 //
 
 import UIKit
 
-class CollectionViewPageViewController: UIViewController,
-                                        UICollectionViewDataSource,
-                                        UIPageViewControllerDataSource,
-                                        UIPageViewControllerDelegate,
-                                        UICollectionViewDelegateFlowLayout {
+class CVPVCBaseViewController: UIViewController,
+                               UICollectionViewDataSource,
+                               UIPageViewControllerDataSource,
+                               UIPageViewControllerDelegate,
+                               UICollectionViewDelegateFlowLayout {
     
-    private var tabNameList: [String]!
+    open var tabNameList: [String]!
     
     private var initDidAppearFlag: Bool!
     
@@ -24,7 +24,9 @@ class CollectionViewPageViewController: UIViewController,
     
     private var pageViewController: UIPageViewController!
     
-    private var collectionView: UICollectionView!
+    open var collectionView: UICollectionView!
+    
+    open var collectionViewFlowLayout: UICollectionViewFlowLayout!
     
     init(tabNameList: [String], viewControllerList: [CVPVCViewController]) {
         super.init(nibName: nil, bundle: nil)
@@ -38,50 +40,21 @@ class CollectionViewPageViewController: UIViewController,
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        if initDidAppearFlag {
-            self.collectionView.selectItem(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .centeredHorizontally)
-            initDidAppearFlag = false
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let accountBarButtonItem = UIBarButtonItem(
-            image: UIImage(named: "account")?.withRenderingMode(.alwaysOriginal),
-            style: .plain,
-            target: self,
-            action: #selector(tapAccountButton))
-        navigationItem.leftBarButtonItem = accountBarButtonItem
-        
-        let titleImgView = UIImageView(image: UIImage(named: "top"))
-        navigationItem.titleView = titleImgView
-        
-        let pointBarButtonItem = UIBarButtonItem(
-            image: UIImage(named: "point")?.withRenderingMode(.alwaysOriginal),
-            style: .plain,
-            target: self,
-            action: #selector(tapPointButton))
-        navigationItem.rightBarButtonItem = pointBarButtonItem
-        
         let salg = view.safeAreaLayoutGuide
         
-        let collectionViewFlowLayout = UICollectionViewFlowLayout()
+        // コレクションビューの設定や制約は継承クラスにて実施する。
+        collectionViewFlowLayout = UICollectionViewFlowLayout()
         collectionViewFlowLayout.scrollDirection = .horizontal
         collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: collectionViewFlowLayout)
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
-        collectionView.backgroundColor = .clear
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(CouponCollectionViewCell.self, forCellWithReuseIdentifier: "CouponCollectionViewCell")
         view.addSubview(collectionView)
-        collectionView.heightAnchor.constraint(equalToConstant: CouponCollectionViewCell.CELL_HEIGHT).isActive = true
-        collectionView.topAnchor.constraint(equalTo: salg.topAnchor, constant: 0).isActive = true
-        collectionView.leadingAnchor.constraint(equalTo: salg.leadingAnchor, constant: 0).isActive = true
-        collectionView.trailingAnchor.constraint(equalTo: salg.trailingAnchor, constant: 0).isActive = true
         
         pageViewController = UIPageViewController(
             transitionStyle: .scroll,
@@ -105,23 +78,20 @@ class CollectionViewPageViewController: UIViewController,
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        if initDidAppearFlag {
+            self.collectionView.selectItem(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .centeredHorizontally)
+            initDidAppearFlag = false
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return tabNameList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: "CouponCollectionViewCell",
-            for: indexPath) as! CouponCollectionViewCell
-        cell.label.text = tabNameList[indexPath.row]
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = CGSize(
-            width: tabNameList[indexPath.row].widthOfString(font: UIFont.systemFont(ofSize: 17)),
-            height: CouponCollectionViewCell.CELL_HEIGHT)
-        return size
+        // 本クラスはベースクラスのため、下記のコードでの実行を想定しない。
+        return UICollectionViewCell()
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -166,5 +136,5 @@ class CollectionViewPageViewController: UIViewController,
     @objc func tapPointButton() {
         print("tapped Point Button.")
     }
-
+    
 }
