@@ -164,8 +164,8 @@
 		350216B52590D70E00CEA169 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				35392FAA25E2EA9100499653 /* HomeViewModel.swift */,
 				35E6909825F0B75B0038C9D8 /* CouponViewModel.swift */,
+				35392FAA25E2EA9100499653 /* HomeViewModel.swift */,
 				3506EDA7261926B300A55C40 /* MenuViewModel.swift */,
 				3586DF25263B6F1200DB6C5D /* ShopViewModel.swift */,
 			);
@@ -175,7 +175,6 @@
 		350216B62590D72900CEA169 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				359757DF264DC59300A85EB8 /* View */,
 				35E6908F25F0B6DE0038C9D8 /* CouponItem.swift */,
 				35E6909225F0B6FB0038C9D8 /* CouponItemRepository.swift */,
 				350216B72590D8E500CEA169 /* ItemRepository.swift */,
@@ -190,6 +189,7 @@
 				3506EDB02619287200A55C40 /* RepositoryError.swift */,
 				3586DF22263B63A000DB6C5D /* Shop.swift */,
 				3586DF1F263B62AB00DB6C5D /* ShopRepository.swift */,
+				359757DF264DC59300A85EB8 /* View */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -197,10 +197,10 @@
 		35085BA225FEC4D6003FCF98 /* CollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				35E1D5BA26278E4C006EB946 /* MenuCollectionReusableView.swift */,
-				35E1D5BD26279328006EB946 /* MenuCollectionViewCell.swift */,
 				3511FA2126512209008CA9C9 /* CVPVCCollectionViewCellA.swift */,
 				3511FA2426512322008CA9C9 /* CVPVCCollectionViewCellB.swift */,
+				35E1D5BA26278E4C006EB946 /* MenuCollectionReusableView.swift */,
+				35E1D5BD26279328006EB946 /* MenuCollectionViewCell.swift */,
 			);
 			path = CollectionViewCell;
 			sourceTree = "<group>";
@@ -208,11 +208,11 @@
 		3586AD0525DC621100D85612 /* TableViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				3586AD0625DC624800D85612 /* LowPriceItemTableViewCell.swift */,
-				358F7C3A25DD2A0D00EBA48C /* RecommendedItemTableViewCell.swift */,
 				354D3F9825F17FF100E72722 /* CouponItemTableViewCell.swift */,
-				3520C39C26506EA000916A1B /* MenuItemDetailItemTableViewCell.swift */,
+				3586AD0625DC624800D85612 /* LowPriceItemTableViewCell.swift */,
 				3520C39F26506FEB00916A1B /* MenuItemDetailHeaderView.swift */,
+				3520C39C26506EA000916A1B /* MenuItemDetailItemTableViewCell.swift */,
+				358F7C3A25DD2A0D00EBA48C /* RecommendedItemTableViewCell.swift */,
 			);
 			path = TableViewCell;
 			sourceTree = "<group>";
@@ -220,8 +220,8 @@
 		358F7C3D25DD968300EBA48C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				358F7C3E25DD974800EBA48C /* RecommendedItemView.swift */,
 				35D5E1312606B94300846D0F /* CouponDetailView.swift */,
+				358F7C3E25DD974800EBA48C /* RecommendedItemView.swift */,
 				35DA31402649318300FA2E74 /* ShopDetailCalloutAccessoryView.swift */,
 			);
 			path = View;
@@ -250,9 +250,9 @@
 		35F392052590DCA30043257F /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				3568F82A262AA627002100E1 /* Formatter.swift */,
 				35F392062590DCBB0043257F /* HttpGet.swift */,
 				35085BA625FECF20003FCF98 /* String.swift */,
-				3568F82A262AA627002100E1 /* Formatter.swift */,
 				355E4AE82638C5B600ADB28A /* UIColorExtend.swift */,
 			);
 			path = Utils;
@@ -261,19 +261,19 @@
 		389B9B3A25875E2A0082AEBF /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				389B9B3825875E240082AEBF /* HomeViewController.swift */,
-				3548A10F25ED9922000B5024 /* MainTabBarController.swift */,
-				3548A11325EDA2AD000B5024 /* CouponViewController.swift */,
 				35D5E12E2606B2F500846D0F /* CouponDetailViewController.swift */,
-				359108E026187D83003D04E5 /* MenuViewController.swift */,
-				356AF0F7262C3AB50020D33A /* MenuDetailViewController.swift */,
-				3506ED8A261920CB00A55C40 /* CVPVCViewController.swift */,
-				35C41F5726362A7F007E5DF2 /* NavigationController.swift */,
-				350E3D0B263A6BD6001A4543 /* ShopViewController.swift */,
-				352BE914264C75F20028A3C3 /* MenuDetailInfoViewController.swift */,
+				3548A11325EDA2AD000B5024 /* CouponViewController.swift */,
 				3511FA2726512632008CA9C9 /* CVPVCBaseViewController.swift */,
+				3506ED8A261920CB00A55C40 /* CVPVCViewController.swift */,
 				3511FA2A265129F6008CA9C9 /* CVPVCViewControllerA.swift */,
 				35CA15E6265B83F300E30F9D /* CVPVCViewControllerB.swift */,
+				389B9B3825875E240082AEBF /* HomeViewController.swift */,
+				3548A10F25ED9922000B5024 /* MainTabBarController.swift */,
+				352BE914264C75F20028A3C3 /* MenuDetailInfoViewController.swift */,
+				356AF0F7262C3AB50020D33A /* MenuDetailViewController.swift */,
+				359108E026187D83003D04E5 /* MenuViewController.swift */,
+				35C41F5726362A7F007E5DF2 /* NavigationController.swift */,
+				350E3D0B263A6BD6001A4543 /* ShopViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -299,19 +299,19 @@
 		38B7AEF425875B43003433A5 /* IOS_Xacdonald */ = {
 			isa = PBXGroup;
 			children = (
-				35A99726264A9425007B9CFE /* PointAnnotation */,
-				35085BA225FEC4D6003FCF98 /* CollectionViewCell */,
-				3586AD0525DC621100D85612 /* TableViewCell */,
-				350216B62590D72900CEA169 /* Model */,
-				358F7C3D25DD968300EBA48C /* View */,
-				389B9B3A25875E2A0082AEBF /* Controller */,
-				350216B52590D70E00CEA169 /* ViewModel */,
-				35F392052590DCA30043257F /* Utils */,
 				38B7AEF525875B43003433A5 /* AppDelegate.swift */,
-				38B7AEF725875B43003433A5 /* SceneDelegate.swift */,
 				38B7AEFE25875B44003433A5 /* Assets.xcassets */,
-				38B7AF0025875B44003433A5 /* LaunchScreen.storyboard */,
+				35085BA225FEC4D6003FCF98 /* CollectionViewCell */,
+				389B9B3A25875E2A0082AEBF /* Controller */,
 				38B7AF0325875B44003433A5 /* Info.plist */,
+				38B7AF0025875B44003433A5 /* LaunchScreen.storyboard */,
+				350216B62590D72900CEA169 /* Model */,
+				35A99726264A9425007B9CFE /* PointAnnotation */,
+				38B7AEF725875B43003433A5 /* SceneDelegate.swift */,
+				3586AD0525DC621100D85612 /* TableViewCell */,
+				35F392052590DCA30043257F /* Utils */,
+				358F7C3D25DD968300EBA48C /* View */,
+				350216B52590D70E00CEA169 /* ViewModel */,
 			);
 			path = IOS_Xacdonald;
 			sourceTree = "<group>";
