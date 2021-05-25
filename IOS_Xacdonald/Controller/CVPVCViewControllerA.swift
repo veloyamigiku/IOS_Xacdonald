@@ -33,8 +33,7 @@ class CVPVCViewControllerA: CVPVCBaseViewController {
         let salg = view.safeAreaLayoutGuide
         
         collectionViewFlowLayout.minimumInteritemSpacing = 0
-        
-        collectionView.backgroundColor = .cyan
+        collectionView.backgroundColor = .clear
         collectionView.register(
             CVPVCCollectionViewCellA.self,
             forCellWithReuseIdentifier: "CVPVCCollectionViewCellA")
@@ -42,6 +41,7 @@ class CVPVCViewControllerA: CVPVCBaseViewController {
         collectionView.topAnchor.constraint(equalTo: salg.topAnchor, constant: 0).isActive = true
         collectionView.leadingAnchor.constraint(equalTo: salg.leadingAnchor, constant: 0).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: salg.trailingAnchor, constant: 0).isActive = true
+        pageViewControllerTopAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 0).isActive = true
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

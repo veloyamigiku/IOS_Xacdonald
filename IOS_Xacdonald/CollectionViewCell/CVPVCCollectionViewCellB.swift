@@ -10,6 +10,7 @@ import UIKit
 
 class CVPVCCollectionViewCellB: UICollectionViewCell {
     
+    private static let PADDING = CGFloat(5)
     private static let LABEL_MARGIN_TOP_BOTTOM = CGFloat(5)
     static let LABEL_MARGIN_LEFT_RIGHT = CGFloat(5)
     static let LABEL_FONT_SIZE = CGFloat(13)
@@ -18,6 +19,8 @@ class CVPVCCollectionViewCellB: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        layer.cornerRadius = 5
         
         label = UILabel()
         label.lineBreakMode = .byClipping
@@ -37,8 +40,7 @@ class CVPVCCollectionViewCellB: UICollectionViewCell {
     
     override var isSelected: Bool {
         didSet {
-            let color = isSelected ? UIColor.red : UIColor.black
-            label.textColor = color
+            backgroundColor = isSelected ? UIColor.white : UIColor.clear
         }
     }
     

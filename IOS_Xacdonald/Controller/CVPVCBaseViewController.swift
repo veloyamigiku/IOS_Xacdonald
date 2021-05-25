@@ -28,6 +28,8 @@ class CVPVCBaseViewController: UIViewController,
     
     open var collectionViewFlowLayout: UICollectionViewFlowLayout!
     
+    open var pageViewControllerTopAnchor: NSLayoutYAxisAnchor!
+    
     init(tabNameList: [String], viewControllerList: [CVPVCViewController]) {
         super.init(nibName: nil, bundle: nil)
         self.tabNameList = tabNameList
@@ -71,11 +73,10 @@ class CVPVCBaseViewController: UIViewController,
         addChild(pageViewController)
         view.addSubview(pageViewController.view)
         pageViewController.didMove(toParent: self)
-        pageViewController.view.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 0).isActive = true
+        pageViewControllerTopAnchor = pageViewController.view.topAnchor
         pageViewController.view.leadingAnchor.constraint(equalTo: salg.leadingAnchor, constant: 0).isActive = true
         pageViewController.view.trailingAnchor.constraint(equalTo: salg.trailingAnchor, constant: 0).isActive = true
         pageViewController.view.bottomAnchor.constraint(equalTo: salg.bottomAnchor, constant: 0).isActive = true
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
