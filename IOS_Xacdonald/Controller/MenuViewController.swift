@@ -138,6 +138,7 @@ class MenuViewController: CVPVCViewController, UICollectionViewDataSource, UICol
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let menuItem = menuItemsWithKeywordRanking[indexPath.section].MenuItems[indexPath.row]
         let menuDetailViewController = MenuDetailViewController(menuItem: menuItem)
+        menuDetailViewController.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(
             menuDetailViewController,
             animated: true)

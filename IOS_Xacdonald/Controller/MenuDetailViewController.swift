@@ -43,7 +43,7 @@ class MenuDetailViewController: UIViewController {
     private static let MENU_DETAIL_INFO_TYPE_LIST = [
         ModelConstant.MENU_DETAIL_INFO_TYPE_DETAIL1,
         ModelConstant.MENU_DETAIL_INFO_TYPE_DETAIL2,
-        ModelConstant.MENU_DETAIL_INFO_TYPE_DETAIL3,
+        ModelConstant.MENU_DETAIL_INFO_TYPE_DETAIL3
     ]
     
     private var menuItem: MenuItem!
