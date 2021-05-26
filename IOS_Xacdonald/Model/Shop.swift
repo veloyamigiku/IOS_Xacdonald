@@ -14,6 +14,7 @@ struct Shop {
     var tel: String
     var station: String
     var railway: String
-    var lat: Float
-    var lon: Float
+    var lat: Double
+    var lon: Double
+    var dist: Int
 }

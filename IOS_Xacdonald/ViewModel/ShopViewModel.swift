@@ -11,7 +11,7 @@ import RxSwift
 
 class ShopViewModel {
     
-    func getShop(lat: Float, lon: Float, query: String) -> Observable<[Shop]> {
+    func getShop(lat: Double, lon: Double, query: String) -> Observable<[Shop]> {
         let subject = PublishSubject<[Shop]>()
         let observable = subject.asObserver()
         ShopRepository.getShop(lat: lat, lon: lon, query: query)

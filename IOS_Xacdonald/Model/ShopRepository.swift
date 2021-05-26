@@ -9,10 +9,11 @@
 import Foundation
 import RxSwift
 import SwiftyJSON
+import MapKit
 
 class ShopRepository {
     
-    static func getShop(lat: Float, lon: Float, query: String) -> Observable<[Shop]>  {
+    static func getShop(lat: Double, lon: Double, query: String) -> Observable<[Shop]>  {
         let subject = PublishSubject<[Shop]>()
         let observable = subject.asObserver()
         HttpGet.exec(
@@ -31,6 +32,7 @@ class ShopRepository {
                         let total = json["ResultInfo"]["Total"].intValue
                         var shopList: [Shop] = []
                         if total > 0 {
+                            let curLocation = CLLocation(latitude: lat, longitude: lon)
                             for feature in json["Feature"].arrayValue {
                                 //print(feature)
                                 let name = feature["Name"].stringValue
@@ -38,8 +40,10 @@ class ShopRepository {
                                 let tel = feature["Property"]["Tel1"].stringValue
                                 let coordinate = feature["Geometry"]["Coordinates"].stringValue
                                 let coordinateParts = coordinate.split(separator: ",")
-                                let lat = Float(coordinateParts[1])
-                                let lon = Float(coordinateParts[0])
+                                let shopLat = Double(coordinateParts[1])!
+                                let shopLon = Double(coordinateParts[0])!
+                                let shopLocation = CLLocation(latitude: shopLat, longitude: shopLon)
+                                let dist = Int(shopLocation.distance(from: curLocation))
                                 let stationList = feature["Property"]["Station"]
                                 var station = ""
                                 var railway = ""
@@ -54,8 +58,9 @@ class ShopRepository {
                                     tel: tel,
                                     station: station,
                                     railway: railway,
-                                    lat: lat!,
-                                    lon: lon!)
+                                    lat: shopLat,
+                                    lon: shopLon,
+                                    dist: dist)
                                 //print(shop)
                                 shopList.append(shop)
                             }

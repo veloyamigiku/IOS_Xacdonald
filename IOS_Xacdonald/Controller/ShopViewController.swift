@@ -11,9 +11,16 @@ import MapKit
 import PINRemoteImage
 import RxSwift
 
-class ShopViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
+class ShopViewController:
+    UIViewController,
+    CLLocationManagerDelegate,
+    MKMapViewDelegate,
+    UITableViewDataSource,
+    UITableViewDelegate {
     
     private var map: MKMapView!
+    
+    private var tableView: UITableView!
     
     private var locationManager: CLLocationManager!
     
@@ -21,10 +28,13 @@ class ShopViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     
     private var menuItem: MenuItem!
     
+    private var shopList: [Shop]!
+    
     init(menuItem: MenuItem!) {
         super.init(nibName: nil, bundle: nil)
         viewModel = ShopViewModel()
         self.menuItem = menuItem
+        self.shopList = []
     }
     
     required init?(coder: NSCoder) {
@@ -93,10 +103,23 @@ class ShopViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         map.delegate = self
         map.userTrackingMode = MKUserTrackingMode.followWithHeading
         view.addSubview(map)
-        map.heightAnchor.constraint(equalToConstant: 300).isActive = true
+        map.heightAnchor.constraint(equalToConstant: 200).isActive = true
         map.topAnchor.constraint(equalTo: itemView != nil ? itemView.bottomAnchor : salg.topAnchor).isActive = true
         map.leadingAnchor.constraint(equalTo: salg.leadingAnchor).isActive = true
         map.trailingAnchor.constraint(equalTo: salg.trailingAnchor).isActive = true
+        
+        tableView = UITableView()
+        tableView.backgroundColor = .cyan
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.tableFooterView = UIView()
+        tableView.register(ShopTableViewCell.self, forCellReuseIdentifier: "ShopTableViewCell")
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(tableView)
+        tableView.topAnchor.constraint(equalTo: map.bottomAnchor, constant: 0).isActive = true
+        tableView.leadingAnchor.constraint(equalTo: salg.leadingAnchor, constant: 0).isActive = true
+        tableView.trailingAnchor.constraint(equalTo: salg.trailingAnchor, constant: 0).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: salg.bottomAnchor, constant: 0).isActive = true
         
         locationManager = CLLocationManager()
         locationManager.delegate = self
@@ -134,12 +157,14 @@ class ShopViewController: UIViewController, CLLocationManagerDelegate, MKMapView
             span: span)
         self.map.setRegion(region, animated: true)
         viewModel.getShop(
-            lat: Float(location.coordinate.latitude),
-            lon: Float(location.coordinate.longitude),
+            lat: location.coordinate.latitude,
+            lon: location.coordinate.longitude,
             query: "マクドナルド")
             .observeOn(MainScheduler.instance)
             .subscribe(
                 onNext: { shopList in
+                    self.shopList = shopList
+                    self.tableView.reloadData()
                     self.map.removeAnnotations(self.map.annotations)
                     for shop in shopList {
                         let shopPin = ShopPointAnnotation()
@@ -208,6 +233,65 @@ class ShopViewController: UIViewController, CLLocationManagerDelegate, MKMapView
             // 吹き出しを閉じる。
             mapView.deselectAnnotation(view.annotation, animated: true)
         }
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return shopList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ShopTableViewCell", for: indexPath) as! ShopTableViewCell
+        let shop = shopList[indexPath.row]
+        cell.stateLabel.text = "営業中"
+        let stateStr = NSMutableAttributedString()
+        stateStr.append(NSAttributedString(
+                            string: "営業中",
+                            attributes: [
+                                NSAttributedString.Key.foregroundColor: UIColor.lightGray,
+                                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)
+                            ]))
+        cell.stateLabel.attributedText = stateStr
+        let distStr = NSMutableAttributedString()
+        distStr.append(NSAttributedString(
+                        string: String(shop.dist) + "m",
+                        attributes: [
+                            NSAttributedString.Key.foregroundColor: UIColor.lightGray,
+                            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)
+                        ]))
+        cell.distLabel.attributedText = distStr
+        let nameStr = NSMutableAttributedString()
+        nameStr.append(NSAttributedString(
+                        string: shop.name,
+                        attributes: [
+                            NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 12)
+                        ]))
+        cell.nameLabel.attributedText = nameStr
+        let addressStr = NSMutableAttributedString()
+        addressStr.append(NSAttributedString(
+                        string: shop.address,
+                        attributes: [
+                            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)
+                        ]))
+        cell.addressLabel.attributedText = addressStr
+        let stationStr = NSMutableAttributedString()
+        stationStr.append(NSAttributedString(
+                        string: shop.station,
+                        attributes: [
+                            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)
+                        ]))
+        cell.stationLabel.attributedText = stationStr
+        let railwayStr = NSMutableAttributedString()
+        railwayStr.append(NSAttributedString(
+                        string: shop.railway,
+                        attributes: [
+                            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)
+                        ]))
+        cell.railwayLabel.attributedText = railwayStr
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
 }
