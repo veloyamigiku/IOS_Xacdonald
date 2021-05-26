@@ -107,7 +107,8 @@ class MainTabBarController: UITabBarController {
         
         let homeViewController = HomeViewController()
         //let homeNavigationViewController = UINavigationController()
-        let homeNavigationViewController =  NavigationController()
+        NavigationItem.config(navigationItem: homeViewController.navigationItem)
+        let homeNavigationViewController = NavigationController()
         homeNavigationViewController.viewControllers = [homeViewController]
         homeNavigationViewController.tabBarItem = UITabBarItem(
                 title: "",
@@ -126,6 +127,7 @@ class MainTabBarController: UITabBarController {
         let couponRootViewController = CVPVCViewControllerA(
             tabNameList: MainTabBarController.COUPON_CATEGORY_LIST,
             viewControllerList: couponViewControllerList)
+        NavigationItem.config(navigationItem: couponRootViewController.navigationItem)
         let couponNavigationController = NavigationController()
         couponNavigationController.viewControllers = [couponRootViewController]
         couponNavigationController.tabBarItem = UITabBarItem(
@@ -145,6 +147,7 @@ class MainTabBarController: UITabBarController {
         let menuRootViewController = CVPVCViewControllerA(
             tabNameList: MainTabBarController.MENU_CATEGORY_LIST,
             viewControllerList: menuViewControllerList)
+        NavigationItem.config(navigationItem: menuRootViewController.navigationItem)
         let menuNavigationController = NavigationController()
         menuNavigationController.viewControllers = [menuRootViewController]
         menuNavigationController.tabBarItem = UITabBarItem(
