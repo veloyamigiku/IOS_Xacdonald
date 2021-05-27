@@ -28,78 +28,6 @@ class MainTabBarController: UITabBarController {
         ModelConstant.CATEGORY_ID_PS3
     ]
     
-    private static let MENU_CATEGORY_LIST = [
-        ModelConstant.CATEGORY_FOOD,
-        ModelConstant.CATEGORY_DEVICE,
-        ModelConstant.CATEGORY_HOME_APPLIANCE,
-        ModelConstant.CATEGORY_FURNITURE,
-        ModelConstant.CATEGORY_BOOK,
-        ModelConstant.CATEGORY_SPORT,
-        ModelConstant.CATEGORY_GAME
-    ]
-    
-    private static let MENU_CATEGORY_ID_LIST = [
-        ModelConstant.CATEGORY_ID_FOOD,
-        ModelConstant.CATEGORY_ID_DEVICE,
-        ModelConstant.CATEGORY_ID_HOME_APPLIANCE,
-        ModelConstant.CATEGORY_ID_FURNITURE,
-        ModelConstant.CATEGORY_ID_BOOK,
-        ModelConstant.CATEGORY_ID_SPORT,
-        ModelConstant.CATEGORY_ID_GAME
-    ]
-    /*
-    private static let MENU_LIST: [Menu] = [
-        Menu(
-            id: ModelConstant.CATEGORY_ID_PS5,
-            keywordList: [
-                ModelConstant.GENRE_ACTION,
-                ModelConstant.GENRE_FPS,
-                ModelConstant.GENRE_RPG,
-                ModelConstant.GENRE_ADVENTURE,
-                ModelConstant.GENRE_SHOOTING]),
-        Menu(
-            id: ModelConstant.CATEGORY_ID_XBOX_SERIES_X_S,
-            keywordList: [
-                ModelConstant.GENRE_ACTION,
-                ModelConstant.GENRE_FPS,
-                ModelConstant.GENRE_RPG,
-                ModelConstant.GENRE_ADVENTURE,
-                ModelConstant.GENRE_SHOOTING]),
-        Menu(
-            id: ModelConstant.CATEGORY_ID_PS4,
-            keywordList: [
-                ModelConstant.GENRE_ACTION,
-                ModelConstant.GENRE_FPS,
-                ModelConstant.GENRE_RPG,
-                ModelConstant.GENRE_ADVENTURE,
-                ModelConstant.GENRE_SHOOTING]),
-        Menu(
-            id: ModelConstant.CATEGORY_ID_XBOX_ONE,
-            keywordList: [
-                ModelConstant.GENRE_ACTION,
-                ModelConstant.GENRE_FPS,
-                ModelConstant.GENRE_RPG,
-                ModelConstant.GENRE_ADVENTURE,
-                ModelConstant.GENRE_SHOOTING]),
-        Menu(
-            id: ModelConstant.CATEGORY_ID_SW,
-            keywordList: [
-                ModelConstant.GENRE_ACTION,
-                ModelConstant.GENRE_FPS,
-                ModelConstant.GENRE_RPG,
-                ModelConstant.GENRE_ADVENTURE,
-                ModelConstant.GENRE_SHOOTING]),
-        Menu(
-            id: ModelConstant.CATEGORY_ID_PS3,
-            keywordList: [
-                ModelConstant.GENRE_ACTION,
-                ModelConstant.GENRE_FPS,
-                ModelConstant.GENRE_RPG,
-                ModelConstant.GENRE_ADVENTURE,
-                ModelConstant.GENRE_SHOOTING])
-    ]
-    */
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -137,7 +65,7 @@ class MainTabBarController: UITabBarController {
         
         var menuViewControllerIndex = 0
         var menuViewControllerList: [CVPVCViewController] = []
-        for menuCategoryID in MainTabBarController.MENU_CATEGORY_ID_LIST {
+        for menuCategoryID in VCConstraint.MENU_CATEGORY_ID_LIST {
             let menuViewController = MenuViewController(
                 categoryID: menuCategoryID,
                 index: menuViewControllerIndex)
@@ -145,7 +73,7 @@ class MainTabBarController: UITabBarController {
             menuViewControllerIndex += 1
         }
         let menuRootViewController = CVPVCViewControllerA(
-            tabNameList: MainTabBarController.MENU_CATEGORY_LIST,
+            tabNameList: VCConstraint.MENU_CATEGORY_LIST,
             viewControllerList: menuViewControllerList)
         NavigationItem.config(navigationItem: menuRootViewController.navigationItem)
         let menuNavigationController = NavigationController()
