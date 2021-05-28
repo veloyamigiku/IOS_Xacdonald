@@ -52,4 +52,16 @@ class VCUtils: NSObject {
         return menuOrderRootViewController
     }
     
+    static func createMenuOrderRootViewController(
+        title: String,
+        preOrderMenuItem: MenuItem) -> MenuOrderRootViewController {
+        let menuViewControllerList = _createMenuViewControllerList()
+        let menuOrderRootViewController = MenuOrderRootViewController(
+            tabNameList: VCConstraint.MENU_CATEGORY_LIST,
+            viewControllerList: menuViewControllerList,
+            preOrderMenuItem: preOrderMenuItem)
+        menuOrderRootViewController.title = title
+        return menuOrderRootViewController
+    }
+    
 }

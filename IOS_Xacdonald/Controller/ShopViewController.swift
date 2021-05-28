@@ -292,7 +292,9 @@ class ShopViewController:
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let menuOrderRootViewController = VCUtils.createMenuOrderRootViewController(title: shopList[indexPath.row].name)
+        let menuOrderRootViewController = VCUtils.createMenuOrderRootViewController(
+            title: shopList[indexPath.row].name,
+            preOrderMenuItem: menuItem)
         self.navigationController?.pushViewController(menuOrderRootViewController, animated: true)
     }
     
