@@ -11,11 +11,13 @@ import UIKit
 class MenuOrderRootViewController: CVPVCViewControllerA {
     
     private var preOrderMenuItem: MenuItem!
+    private var orderMenuItemList: [MenuItem]!
     
     override init(
         tabNameList: [String],
         viewControllerList: [CVPVCViewController]) {
         super.init(tabNameList: tabNameList, viewControllerList: viewControllerList)
+        orderMenuItemList = []
     }
     
     init(
@@ -24,6 +26,7 @@ class MenuOrderRootViewController: CVPVCViewControllerA {
         preOrderMenuItem: MenuItem) {
         super.init(tabNameList: tabNameList, viewControllerList: viewControllerList)
         self.preOrderMenuItem = preOrderMenuItem
+        orderMenuItemList = []
     }
     
     required init?(coder: NSCoder) {
@@ -35,8 +38,14 @@ class MenuOrderRootViewController: CVPVCViewControllerA {
         
         if (preOrderMenuItem != nil) {
             self.navigationController?.pushViewController(
-                MenuOrderViewController(menuItem: preOrderMenuItem),
+                MenuOrderDetailViewController(menuItem: preOrderMenuItem),
                 animated: true)
         }
     }
+    
+    func addOrderMenuItem(menuItem: MenuItem) {
+        orderMenuItemList.append(menuItem)
+        print("add order menu Item.")
+    }
+    
 }

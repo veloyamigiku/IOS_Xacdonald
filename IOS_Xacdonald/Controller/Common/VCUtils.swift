@@ -23,6 +23,19 @@ class VCUtils: NSObject {
         return menuViewControllerList
     }
     
+    private static func _createMenuOrderViewControllerList() -> [CVPVCViewController] {
+        var menuViewControllerIndex = 0
+        var menuViewControllerList: [CVPVCViewController] = []
+        for menuCategoryID in VCConstraint.MENU_CATEGORY_ID_LIST {
+            let menuViewController = MenuOrderViewController(
+                categoryID: menuCategoryID,
+                index: menuViewControllerIndex)
+            menuViewControllerList.append(menuViewController)
+            menuViewControllerIndex += 1
+        }
+        return menuViewControllerList
+    }
+    
     private static func _createCVPVCViewControllerForMenu() -> CVPVCViewControllerA {
         let menuViewControllerList = _createMenuViewControllerList()
         let menuRootViewController = CVPVCViewControllerA(
@@ -44,7 +57,7 @@ class VCUtils: NSObject {
     }
     
     static func createMenuOrderRootViewController(title: String) -> MenuOrderRootViewController {
-        let menuViewControllerList = _createMenuViewControllerList()
+        let menuViewControllerList = _createMenuOrderViewControllerList()
         let menuOrderRootViewController = MenuOrderRootViewController(
             tabNameList: VCConstraint.MENU_CATEGORY_LIST,
             viewControllerList: menuViewControllerList)
@@ -55,7 +68,7 @@ class VCUtils: NSObject {
     static func createMenuOrderRootViewController(
         title: String,
         preOrderMenuItem: MenuItem) -> MenuOrderRootViewController {
-        let menuViewControllerList = _createMenuViewControllerList()
+        let menuViewControllerList = _createMenuOrderViewControllerList()
         let menuOrderRootViewController = MenuOrderRootViewController(
             tabNameList: VCConstraint.MENU_CATEGORY_LIST,
             viewControllerList: menuViewControllerList,

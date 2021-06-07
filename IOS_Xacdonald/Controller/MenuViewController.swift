@@ -17,7 +17,7 @@ class MenuViewController: CVPVCViewController, UICollectionViewDataSource, UICol
     
     private var categoryID: String!
     private var viewModel: MenuViewModel!
-    private var menuItemsWithKeywordRanking: [MenuItemsWithKeywordRanking]!
+    open var menuItemsWithKeywordRanking: [MenuItemsWithKeywordRanking]!
     private var collectionView: UICollectionView!
     
     init(categoryID: String, index: Int) {
@@ -142,7 +142,6 @@ class MenuViewController: CVPVCViewController, UICollectionViewDataSource, UICol
         self.navigationController?.pushViewController(
             menuDetailViewController,
             animated: true)
-        
     }
     
 }

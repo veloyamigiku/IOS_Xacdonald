@@ -45,6 +45,7 @@
 		359757EE264DC9C800A85EB8 /* MenuItemDetailData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359757ED264DC9C800A85EB8 /* MenuItemDetailData.swift */; };
 		35A34A9425E1904500983CE5 /* LowPriceItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A34A9325E1904500983CE5 /* LowPriceItem.swift */; };
 		35A99728264A9445007B9CFE /* ShopPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A99727264A9445007B9CFE /* ShopPointAnnotation.swift */; };
+		35B10BCF266EC35800B7476E /* MenuOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B10BCE266EC35800B7476E /* MenuOrderViewController.swift */; };
 		35B89A6C2660619000294971 /* MenuOrderRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B89A6B2660619000294971 /* MenuOrderRootViewController.swift */; };
 		35BC423E265DBBF5005D2CD9 /* ShopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BC423D265DBBF5005D2CD9 /* ShopTableViewCell.swift */; };
 		35C41F5826362A7F007E5DF2 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C41F5726362A7F007E5DF2 /* NavigationController.swift */; };
@@ -64,7 +65,7 @@
 		35F392072590DCBB0043257F /* HttpGet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F392062590DCBB0043257F /* HttpGet.swift */; };
 		35FCD85C265F0EF300D9DCDF /* VCConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FCD85B265F0EF300D9DCDF /* VCConstraint.swift */; };
 		35FCD860265F0FEC00D9DCDF /* VCUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FCD85F265F0FEC00D9DCDF /* VCUtils.swift */; };
-		3804E7182660DFDE006B695B /* MenuOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3804E7172660DFDE006B695B /* MenuOrderViewController.swift */; };
+		3804E7182660DFDE006B695B /* MenuOrderDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3804E7172660DFDE006B695B /* MenuOrderDetailViewController.swift */; };
 		389B9B3925875E240082AEBF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389B9B3825875E240082AEBF /* HomeViewController.swift */; };
 		38B7AEF625875B43003433A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B7AEF525875B43003433A5 /* AppDelegate.swift */; };
 		38B7AEF825875B43003433A5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B7AEF725875B43003433A5 /* SceneDelegate.swift */; };
@@ -112,6 +113,7 @@
 		359757ED264DC9C800A85EB8 /* MenuItemDetailData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemDetailData.swift; sourceTree = "<group>"; };
 		35A34A9325E1904500983CE5 /* LowPriceItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowPriceItem.swift; sourceTree = "<group>"; };
 		35A99727264A9445007B9CFE /* ShopPointAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopPointAnnotation.swift; sourceTree = "<group>"; };
+		35B10BCE266EC35800B7476E /* MenuOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOrderViewController.swift; sourceTree = "<group>"; };
 		35B89A6B2660619000294971 /* MenuOrderRootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOrderRootViewController.swift; sourceTree = "<group>"; };
 		35BC423D265DBBF5005D2CD9 /* ShopTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopTableViewCell.swift; sourceTree = "<group>"; };
 		35C41F5726362A7F007E5DF2 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
@@ -131,7 +133,7 @@
 		35F392062590DCBB0043257F /* HttpGet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpGet.swift; sourceTree = "<group>"; };
 		35FCD85B265F0EF300D9DCDF /* VCConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCConstraint.swift; sourceTree = "<group>"; };
 		35FCD85F265F0FEC00D9DCDF /* VCUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCUtils.swift; sourceTree = "<group>"; };
-		3804E7172660DFDE006B695B /* MenuOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOrderViewController.swift; sourceTree = "<group>"; };
+		3804E7172660DFDE006B695B /* MenuOrderDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOrderDetailViewController.swift; sourceTree = "<group>"; };
 		389B9B3825875E240082AEBF /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		38B7AEF225875B43003433A5 /* IOS_Xacdonald.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IOS_Xacdonald.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38B7AEF525875B43003433A5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -295,8 +297,9 @@
 				3548A10F25ED9922000B5024 /* MainTabBarController.swift */,
 				352BE914264C75F20028A3C3 /* MenuDetailInfoViewController.swift */,
 				356AF0F7262C3AB50020D33A /* MenuDetailViewController.swift */,
+				3804E7172660DFDE006B695B /* MenuOrderDetailViewController.swift */,
 				35B89A6B2660619000294971 /* MenuOrderRootViewController.swift */,
-				3804E7172660DFDE006B695B /* MenuOrderViewController.swift */,
+				35B10BCE266EC35800B7476E /* MenuOrderViewController.swift */,
 				359108E026187D83003D04E5 /* MenuViewController.swift */,
 				35C41F5726362A7F007E5DF2 /* NavigationController.swift */,
 				350E3D0B263A6BD6001A4543 /* ShopViewController.swift */,
@@ -472,7 +475,7 @@
 				35D8E25C26240BAA00164A6B /* MenuItemRepository.swift in Sources */,
 				35A99728264A9445007B9CFE /* ShopPointAnnotation.swift in Sources */,
 				358F7C3F25DD974800EBA48C /* RecommendedItemView.swift in Sources */,
-				3804E7182660DFDE006B695B /* MenuOrderViewController.swift in Sources */,
+				3804E7182660DFDE006B695B /* MenuOrderDetailViewController.swift in Sources */,
 				3529DC9A265EFAB700FEDCEC /* NavigationItem.swift in Sources */,
 				356AF0F8262C3AB60020D33A /* MenuDetailViewController.swift in Sources */,
 				3586AD0725DC624800D85612 /* LowPriceItemTableViewCell.swift in Sources */,
@@ -492,6 +495,7 @@
 				3520C39D26506EA000916A1B /* MenuItemDetailItemTableViewCell.swift in Sources */,
 				359108E126187D83003D04E5 /* MenuViewController.swift in Sources */,
 				3586DF20263B62AB00DB6C5D /* ShopRepository.swift in Sources */,
+				35B10BCF266EC35800B7476E /* MenuOrderViewController.swift in Sources */,
 				3586DF23263B63A000DB6C5D /* Shop.swift in Sources */,
 				359757E8264DC7B800A85EB8 /* MenuItemDetailItemBase.swift in Sources */,
 				38B7AEF625875B43003433A5 /* AppDelegate.swift in Sources */,
