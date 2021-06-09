@@ -30,6 +30,10 @@ class CVPVCBaseViewController: UIViewController,
     
     open var pageViewControllerTopAnchor: NSLayoutYAxisAnchor!
     
+    open var pageViewControllerBottomAnchor: NSLayoutYAxisAnchor!
+    
+    open var pageViewControllerBottomConstraint: NSLayoutConstraint!
+    
     init(tabNameList: [String], viewControllerList: [CVPVCViewController]) {
         super.init(nibName: nil, bundle: nil)
         self.tabNameList = tabNameList
@@ -76,7 +80,9 @@ class CVPVCBaseViewController: UIViewController,
         pageViewControllerTopAnchor = pageViewController.view.topAnchor
         pageViewController.view.leadingAnchor.constraint(equalTo: salg.leadingAnchor, constant: 0).isActive = true
         pageViewController.view.trailingAnchor.constraint(equalTo: salg.trailingAnchor, constant: 0).isActive = true
-        pageViewController.view.bottomAnchor.constraint(equalTo: salg.bottomAnchor, constant: 0).isActive = true
+        pageViewControllerBottomAnchor = pageViewController.view.bottomAnchor
+        pageViewControllerBottomConstraint = pageViewController.view.bottomAnchor.constraint(equalTo: salg.bottomAnchor, constant: 0)
+        pageViewControllerBottomConstraint.isActive = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
