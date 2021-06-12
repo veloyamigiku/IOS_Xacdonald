@@ -91,11 +91,11 @@ class MenuOrderRootViewController: CVPVCViewControllerA {
         orderCountStr.append(NSAttributedString(
                                 string: String(orderCount),
                                 attributes: [
-                                    NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13)]))
+                                    NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 26)]))
         orderCountStr.append(NSAttributedString(
                                 string: "点",
                                 attributes: [
-                                    NSAttributedString.Key.font: UIFont.systemFont(ofSize: 10)]))
+                                    NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)]))
         orderCountLabel.attributedText = orderCountStr
         
         let orderPrice = calcOrderPrice()
@@ -103,12 +103,11 @@ class MenuOrderRootViewController: CVPVCViewControllerA {
         orderPriceStr.append(NSAttributedString(
                                 string: "¥",
                                 attributes: [
-                                    NSAttributedString.Key.font: UIFont.systemFont(ofSize: 10)]))
+                                    NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)]))
         orderPriceStr.append(NSAttributedString(
-                                string: String(orderPrice),
+                                string: Formatter.formatForPrice(number: orderPrice),
                                 attributes: [
-                                    NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13)
-                                ]))
+                                    NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 26)]))
         orderPriceLabel.attributedText = orderPriceStr
     }
     
