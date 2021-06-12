@@ -12,8 +12,7 @@ class MenuOrderRootViewController: CVPVCViewControllerA {
     
     private var preOrderMenuItem: MenuItem!
     private var orderMenuItemList: [MenuItem]!
-    private var orderCountLabel: UILabel!
-    private var orderPriceLabel: UILabel!
+    private var menuOrderBottomView: MenuOrderBottomView!
     
     override init(
         tabNameList: [String],
@@ -42,35 +41,13 @@ class MenuOrderRootViewController: CVPVCViewControllerA {
         
         pageViewControllerBottomConstraint.isActive = false
         
-        orderCountLabel = UILabel()
-        orderCountLabel.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(orderCountLabel)
-        orderCountLabel.topAnchor.constraint(equalTo: pageViewControllerBottomAnchor, constant: 5).isActive = true
-        orderCountLabel.leadingAnchor.constraint(equalTo: salg.leadingAnchor, constant: 5).isActive = true
-        orderCountLabel.bottomAnchor.constraint(equalTo: salg.bottomAnchor, constant: -5).isActive = true
-        
-        orderPriceLabel = UILabel()
-        orderPriceLabel.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(orderPriceLabel)
-        orderPriceLabel.topAnchor.constraint(equalTo: pageViewControllerBottomAnchor, constant: 5).isActive = true
-        orderPriceLabel.leadingAnchor.constraint(equalTo: orderCountLabel.trailingAnchor, constant: 10).isActive = true
-        orderPriceLabel.bottomAnchor.constraint(equalTo: salg.bottomAnchor, constant: -5).isActive = true
-        
-        let registerButton = UIButton()
-        registerButton.translatesAutoresizingMaskIntoConstraints = false
-        registerButton.setAttributedTitle(NSAttributedString(
-                                            string: "レジに進む",
-                                            attributes: [
-                                                NSAttributedString.Key.foregroundColor: UIColor.black,
-                                                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13)
-                                            ]), for: .normal)
-        registerButton.backgroundColor = UIColor.init(hex: "ffcc33")
-        registerButton.layer.cornerRadius = 5
-        registerButton.contentEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        view.addSubview(registerButton)
-        registerButton.topAnchor.constraint(equalTo: pageViewControllerBottomAnchor, constant: 5).isActive = true
-        registerButton.trailingAnchor.constraint(equalTo: salg.trailingAnchor, constant: -5).isActive = true
-        registerButton.bottomAnchor.constraint(equalTo: salg.bottomAnchor, constant: -5).isActive = true
+        menuOrderBottomView = MenuOrderBottomView()
+        menuOrderBottomView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(menuOrderBottomView)
+        menuOrderBottomView.topAnchor.constraint(equalTo: pageViewControllerBottomAnchor, constant: 5).isActive = true
+        menuOrderBottomView.leadingAnchor.constraint(equalTo: salg.leadingAnchor, constant: 5).isActive = true
+        menuOrderBottomView.trailingAnchor.constraint(equalTo: salg.trailingAnchor, constant: -5).isActive = true
+        menuOrderBottomView.bottomAnchor.constraint(equalTo: salg.bottomAnchor, constant: -5).isActive = true
         
         if (preOrderMenuItem != nil) {
             self.navigationController?.pushViewController(
@@ -87,28 +64,10 @@ class MenuOrderRootViewController: CVPVCViewControllerA {
     
     private func updateOrderMenu() {
         let orderCount = getOrderCount()
-        let orderCountStr = NSMutableAttributedString()
-        orderCountStr.append(NSAttributedString(
-                                string: String(orderCount),
-                                attributes: [
-                                    NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 26)]))
-        orderCountStr.append(NSAttributedString(
-                                string: "点",
-                                attributes: [
-                                    NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)]))
-        orderCountLabel.attributedText = orderCountStr
+        menuOrderBottomView.updateOrderCount(orderCount: orderCount)
         
         let orderPrice = calcOrderPrice()
-        let orderPriceStr = NSMutableAttributedString()
-        orderPriceStr.append(NSAttributedString(
-                                string: "¥",
-                                attributes: [
-                                    NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)]))
-        orderPriceStr.append(NSAttributedString(
-                                string: Formatter.formatForPrice(number: orderPrice),
-                                attributes: [
-                                    NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 26)]))
-        orderPriceLabel.attributedText = orderPriceStr
+        menuOrderBottomView.updateOrderPrice(orderPrice: orderPrice)
     }
     
     private func getOrderCount() -> Int {

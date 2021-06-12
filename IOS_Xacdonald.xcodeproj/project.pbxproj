@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3500CA5B267496F60013244F /* MenuOrderBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3500CA5A267496F60013244F /* MenuOrderBottomView.swift */; };
 		350216B82590D8E500CEA169 /* ItemRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350216B72590D8E500CEA169 /* ItemRepository.swift */; };
 		350216BC2590D9F500CEA169 /* RecommendedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350216BB2590D9F500CEA169 /* RecommendedItem.swift */; };
 		3506ED8B261920CB00A55C40 /* CVPVCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3506ED8A261920CB00A55C40 /* CVPVCViewController.swift */; };
@@ -75,6 +76,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3500CA5A267496F60013244F /* MenuOrderBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOrderBottomView.swift; sourceTree = "<group>"; };
 		350216B72590D8E500CEA169 /* ItemRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRepository.swift; sourceTree = "<group>"; };
 		350216BB2590D9F500CEA169 /* RecommendedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedItem.swift; sourceTree = "<group>"; };
 		3506ED8A261920CB00A55C40 /* CVPVCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVPVCViewController.swift; sourceTree = "<group>"; };
@@ -246,6 +248,7 @@
 			isa = PBXGroup;
 			children = (
 				35D5E1312606B94300846D0F /* CouponDetailView.swift */,
+				3500CA5A267496F60013244F /* MenuOrderBottomView.swift */,
 				358F7C3E25DD974800EBA48C /* RecommendedItemView.swift */,
 				35DA31402649318300FA2E74 /* ShopDetailCalloutAccessoryView.swift */,
 			);
@@ -517,6 +520,7 @@
 				35E1D5BE26279328006EB946 /* MenuCollectionViewCell.swift in Sources */,
 				389B9B3925875E240082AEBF /* HomeViewController.swift in Sources */,
 				352BE915264C75F20028A3C3 /* MenuDetailInfoViewController.swift in Sources */,
+				3500CA5B267496F60013244F /* MenuOrderBottomView.swift in Sources */,
 				3506EDB12619287200A55C40 /* RepositoryError.swift in Sources */,
 				3511FA2826512632008CA9C9 /* CVPVCBaseViewController.swift in Sources */,
 				3506EDAB2619278500A55C40 /* MenuItem.swift in Sources */,
