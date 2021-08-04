@@ -32,7 +32,7 @@ class MenuCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = .white
+        self.backgroundColor = .white
         self.layer.masksToBounds = false
         self.layer.cornerRadius = 10
         self.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)

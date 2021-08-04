@@ -59,6 +59,7 @@
 		35DD76E4262647EF00875002 /* KeywordRanking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DD76E3262647EF00875002 /* KeywordRanking.swift */; };
 		35E1D5BB26278E4C006EB946 /* MenuCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E1D5BA26278E4C006EB946 /* MenuCollectionReusableView.swift */; };
 		35E1D5BE26279328006EB946 /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E1D5BD26279328006EB946 /* MenuCollectionViewCell.swift */; };
+		35E3A5D32675511600E1D62F /* MenuOrderBottomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E3A5D22675511600E1D62F /* MenuOrderBottomTableViewCell.swift */; };
 		35E6909025F0B6DE0038C9D8 /* CouponItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E6908F25F0B6DE0038C9D8 /* CouponItem.swift */; };
 		35E6909325F0B6FB0038C9D8 /* CouponItemRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E6909225F0B6FB0038C9D8 /* CouponItemRepository.swift */; };
 		35E6909625F0B71A0038C9D8 /* ModelConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E6909525F0B71A0038C9D8 /* ModelConstant.swift */; };
@@ -128,6 +129,7 @@
 		35DD76E3262647EF00875002 /* KeywordRanking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordRanking.swift; sourceTree = "<group>"; };
 		35E1D5BA26278E4C006EB946 /* MenuCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionReusableView.swift; sourceTree = "<group>"; };
 		35E1D5BD26279328006EB946 /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
+		35E3A5D22675511600E1D62F /* MenuOrderBottomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOrderBottomTableViewCell.swift; sourceTree = "<group>"; };
 		35E6908F25F0B6DE0038C9D8 /* CouponItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponItem.swift; sourceTree = "<group>"; };
 		35E6909225F0B6FB0038C9D8 /* CouponItemRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponItemRepository.swift; sourceTree = "<group>"; };
 		35E6909525F0B71A0038C9D8 /* ModelConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelConstant.swift; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 				3520C39C26506EA000916A1B /* MenuItemDetailItemTableViewCell.swift */,
 				358F7C3A25DD2A0D00EBA48C /* RecommendedItemTableViewCell.swift */,
 				35BC423D265DBBF5005D2CD9 /* ShopTableViewCell.swift */,
+				35E3A5D22675511600E1D62F /* MenuOrderBottomTableViewCell.swift */,
 			);
 			path = TableViewCell;
 			sourceTree = "<group>";
@@ -501,6 +504,7 @@
 				35B10BCF266EC35800B7476E /* MenuOrderViewController.swift in Sources */,
 				3586DF23263B63A000DB6C5D /* Shop.swift in Sources */,
 				359757E8264DC7B800A85EB8 /* MenuItemDetailItemBase.swift in Sources */,
+				35E3A5D32675511600E1D62F /* MenuOrderBottomTableViewCell.swift in Sources */,
 				38B7AEF625875B43003433A5 /* AppDelegate.swift in Sources */,
 				35C41F5826362A7F007E5DF2 /* NavigationController.swift in Sources */,
 				38B7AEF825875B43003433A5 /* SceneDelegate.swift in Sources */,

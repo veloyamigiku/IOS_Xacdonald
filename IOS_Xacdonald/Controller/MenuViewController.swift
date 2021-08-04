@@ -36,6 +36,10 @@ class MenuViewController: CVPVCViewController, UICollectionViewDataSource, UICol
         collectionView.collectionViewLayout.invalidateLayout()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        collectionView.collectionViewLayout.invalidateLayout()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

@@ -9,6 +9,7 @@ target 'IOS_Xacdonald' do
   pod 'SwiftyJSON'
   pod 'RxSwift'
   pod 'RxRelay'
+  pod 'RxGesture'
   pod 'RxDataSources'
   pod 'AlamofireImage'
   pod 'PINRemoteImage'
