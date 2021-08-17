@@ -15,12 +15,14 @@ class ShopViewController:
     UIViewController,
     CLLocationManagerDelegate,
     MKMapViewDelegate,
-    UITableViewDataSource,
-    UITableViewDelegate {
+    UICollectionViewDataSource,
+    UICollectionViewDelegateFlowLayout {
+    
+    private static let SECTION_INSET = CGFloat(10)
     
     private var map: MKMapView!
     
-    private var tableView: UITableView!
+    private var collectionView: UICollectionView!
     
     private var locationManager: CLLocationManager!
     
@@ -108,18 +110,30 @@ class ShopViewController:
         map.leadingAnchor.constraint(equalTo: salg.leadingAnchor).isActive = true
         map.trailingAnchor.constraint(equalTo: salg.trailingAnchor).isActive = true
         
-        tableView = UITableView()
-        tableView.backgroundColor = .cyan
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.tableFooterView = UIView()
-        tableView.register(ShopTableViewCell.self, forCellReuseIdentifier: "ShopTableViewCell")
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(tableView)
-        tableView.topAnchor.constraint(equalTo: map.bottomAnchor, constant: 0).isActive = true
-        tableView.leadingAnchor.constraint(equalTo: salg.leadingAnchor, constant: 0).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: salg.trailingAnchor, constant: 0).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: salg.bottomAnchor, constant: 0).isActive = true
+        let collectionViewFlowLayout = UICollectionViewFlowLayout()
+        collectionViewFlowLayout.scrollDirection = .vertical
+        collectionViewFlowLayout.sectionInset = UIEdgeInsets(
+            top: ShopViewController.SECTION_INSET,
+            left: ShopViewController.SECTION_INSET,
+            bottom: ShopViewController.SECTION_INSET,
+            right: ShopViewController.SECTION_INSET)
+        collectionView = UICollectionView(
+            frame: CGRect.zero,
+            collectionViewLayout: collectionViewFlowLayout)
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.backgroundColor = .clear
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.register(
+            ShopCollectionViewCell.self,
+            forCellWithReuseIdentifier: "ShopCollectionViewCell")
+        view.addSubview(collectionView)
+        collectionView.topAnchor.constraint(equalTo: map.bottomAnchor,constant: 0).isActive = true
+        collectionView.leadingAnchor.constraint(equalTo: salg.leadingAnchor, constant: 0).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: salg.trailingAnchor, constant: 0).isActive = true
+        collectionView.bottomAnchor.constraint(equalTo: salg.bottomAnchor, constant: 0).isActive = true
         
         locationManager = CLLocationManager()
         locationManager.delegate = self
@@ -145,6 +159,8 @@ class ShopViewController:
         case .authorizedWhenInUse:
             print("起動時のみ、位置情報の取得が許可されています。")
             break
+        @unknown default:
+            fatalError()
         }
     }
     
@@ -164,7 +180,7 @@ class ShopViewController:
             .subscribe(
                 onNext: { shopList in
                     self.shopList = shopList
-                    self.tableView.reloadData()
+                    self.collectionView.reloadData()
                     self.map.removeAnnotations(self.map.annotations)
                     for shop in shopList {
                         let shopPin = ShopPointAnnotation()
@@ -235,67 +251,82 @@ class ShopViewController:
         }
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return shopList.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ShopTableViewCell", for: indexPath) as! ShopTableViewCell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: "ShopCollectionViewCell",
+            for: indexPath) as! ShopCollectionViewCell
         let shop = shopList[indexPath.row]
-        cell.stateLabel.text = "営業中"
+        
         let stateStr = NSMutableAttributedString()
         stateStr.append(NSAttributedString(
                             string: "営業中",
                             attributes: [
-                                NSAttributedString.Key.foregroundColor: UIColor.lightGray,
-                                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)
+                                NSAttributedString.Key.foregroundColor: UIColor.red,
+                                NSAttributedString.Key.font: UIFont.systemFont(ofSize: ShopCollectionViewCell.STATE_LABEL_FONT_SIZE)
                             ]))
         cell.stateLabel.attributedText = stateStr
+        
         let distStr = NSMutableAttributedString()
         distStr.append(NSAttributedString(
                         string: String(shop.dist) + "m",
                         attributes: [
                             NSAttributedString.Key.foregroundColor: UIColor.lightGray,
-                            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)
+                            NSAttributedString.Key.font: UIFont.systemFont(ofSize: ShopCollectionViewCell.DIST_LABEL_FONT_SIZE)
                         ]))
         cell.distLabel.attributedText = distStr
+        
         let nameStr = NSMutableAttributedString()
         nameStr.append(NSAttributedString(
                         string: shop.name,
                         attributes: [
-                            NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 12)
+                            NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: ShopCollectionViewCell.NAME_LABEL_FONT_SIZE)
                         ]))
         cell.nameLabel.attributedText = nameStr
+        
         let addressStr = NSMutableAttributedString()
         addressStr.append(NSAttributedString(
-                        string: shop.address,
-                        attributes: [
-                            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)
-                        ]))
+                            string: shop.address,
+                            attributes: [
+                                NSAttributedString.Key.font: UIFont.systemFont(ofSize: ShopCollectionViewCell.ADDRESS_LABEL_FONT_SIZE)
+                            ]))
         cell.addressLabel.attributedText = addressStr
+        
         let stationStr = NSMutableAttributedString()
         stationStr.append(NSAttributedString(
-                        string: shop.station,
-                        attributes: [
-                            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)
-                        ]))
+                            string: shop.station,
+                            attributes: [
+                                NSAttributedString.Key.font: UIFont.systemFont(ofSize: ShopCollectionViewCell.STATE_LABEL_FONT_SIZE)
+                            ]))
         cell.stationLabel.attributedText = stationStr
+        
         let railwayStr = NSMutableAttributedString()
         railwayStr.append(NSAttributedString(
-                        string: shop.railway,
-                        attributes: [
-                            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)
-                        ]))
+                            string: shop.railway,
+                            attributes: [
+                                NSAttributedString.Key.font: UIFont.systemFont(ofSize: ShopCollectionViewCell.RAILWAY_LABEL_FONT_SIZE)
+                            ]))
         cell.railwayLabel.attributedText = railwayStr
+        
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(indexPath.row)
         let menuOrderRootViewController = VCUtils.createMenuOrderRootViewController(
             title: shopList[indexPath.row].name,
             preOrderMenuItem: menuItem)
         self.navigationController?.pushViewController(menuOrderRootViewController, animated: true)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let size = CGSize(
+            width: collectionView.frame.width - (ShopViewController.SECTION_INSET * 2),
+            height: ShopCollectionViewCell.CELL_HEIGHT)
+        return size
     }
     
 }

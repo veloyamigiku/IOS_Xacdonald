@@ -65,6 +65,7 @@
 		35E6909625F0B71A0038C9D8 /* ModelConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E6909525F0B71A0038C9D8 /* ModelConstant.swift */; };
 		35E6909925F0B75B0038C9D8 /* CouponViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E6909825F0B75B0038C9D8 /* CouponViewModel.swift */; };
 		35F392072590DCBB0043257F /* HttpGet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F392062590DCBB0043257F /* HttpGet.swift */; };
+		35F57E1D26CAFA1000990B30 /* ShopCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F57E1C26CAFA1000990B30 /* ShopCollectionViewCell.swift */; };
 		35FCD85C265F0EF300D9DCDF /* VCConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FCD85B265F0EF300D9DCDF /* VCConstraint.swift */; };
 		35FCD860265F0FEC00D9DCDF /* VCUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FCD85F265F0FEC00D9DCDF /* VCUtils.swift */; };
 		3804E7182660DFDE006B695B /* MenuOrderDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3804E7172660DFDE006B695B /* MenuOrderDetailViewController.swift */; };
@@ -135,6 +136,7 @@
 		35E6909525F0B71A0038C9D8 /* ModelConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelConstant.swift; sourceTree = "<group>"; };
 		35E6909825F0B75B0038C9D8 /* CouponViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponViewModel.swift; sourceTree = "<group>"; };
 		35F392062590DCBB0043257F /* HttpGet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpGet.swift; sourceTree = "<group>"; };
+		35F57E1C26CAFA1000990B30 /* ShopCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopCollectionViewCell.swift; sourceTree = "<group>"; };
 		35FCD85B265F0EF300D9DCDF /* VCConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCConstraint.swift; sourceTree = "<group>"; };
 		35FCD85F265F0FEC00D9DCDF /* VCUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCUtils.swift; sourceTree = "<group>"; };
 		3804E7172660DFDE006B695B /* MenuOrderDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOrderDetailViewController.swift; sourceTree = "<group>"; };
@@ -219,6 +221,7 @@
 				3511FA2426512322008CA9C9 /* CVPVCCollectionViewCellB.swift */,
 				35E1D5BA26278E4C006EB946 /* MenuCollectionReusableView.swift */,
 				35E1D5BD26279328006EB946 /* MenuCollectionViewCell.swift */,
+				35F57E1C26CAFA1000990B30 /* ShopCollectionViewCell.swift */,
 			);
 			path = CollectionViewCell;
 			sourceTree = "<group>";
@@ -527,6 +530,7 @@
 				3500CA5B267496F60013244F /* MenuOrderBottomView.swift in Sources */,
 				3506EDB12619287200A55C40 /* RepositoryError.swift in Sources */,
 				3511FA2826512632008CA9C9 /* CVPVCBaseViewController.swift in Sources */,
+				35F57E1D26CAFA1000990B30 /* ShopCollectionViewCell.swift in Sources */,
 				3506EDAB2619278500A55C40 /* MenuItem.swift in Sources */,
 				35D5E12F2606B2F500846D0F /* CouponDetailViewController.swift in Sources */,
 			);
