@@ -29,6 +29,8 @@ class MenuOrderDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.title = menuItem.name
+        
         let salg = view.safeAreaLayoutGuide
         
         let addCartButton = UIButton()

@@ -73,7 +73,7 @@ class VCUtils: NSObject {
             tabNameList: VCConstraint.MENU_CATEGORY_LIST,
             viewControllerList: menuViewControllerList,
             preOrderMenuItem: preOrderMenuItem)
-        menuOrderRootViewController.title = title
+        menuOrderRootViewController.navigationItem.title = title
         return menuOrderRootViewController
     }
     
