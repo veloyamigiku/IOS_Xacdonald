@@ -11,7 +11,7 @@ import Foundation
 class ModelConstant {
     
     static let ITEM_SEARCH_URL = "https://shopping.yahooapis.jp/ShoppingWebService/V3/itemSearch"
-    static let KEYWORD_RANKING_URL = "https://shopping.yahooapis.jp/ShoppingWebService/V1/json/queryRanking"
+    static let KEYWORD_RANKING_URL = "https://shopping.yahooapis.jp/ShoppingWebService/V2/queryRanking"
     static let LOCAL_SEARCH_URL = "https://map.yahooapis.jp/search/local/V1/localSearch"
     static let APP_ID = "dj00aiZpPWVheHgxT3VmSmp0eSZzPWNvbnN1bWVyc2VjcmV0Jng9YzU-"
     

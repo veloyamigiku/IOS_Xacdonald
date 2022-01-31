@@ -25,14 +25,13 @@ class MenuItemRepository {
                 onNext: { data in
                     do {
                         let json = try JSON(data: data)
-                        let totalResultsReturned = json["ResultSet"]["totalResultsReturned"].intValue
-                        //print(json["ResultSet"]["0"]["Result"]["0"]["_attributes"])
+                        let totalResultsReturned = json["keyword_ranking"]["meta"]["total_results_returned"].intValue
                         var keywordList: [KeywordRanking] = []
                         for i in 0 ..< totalResultsReturned {
                             keywordList.append(
                                 KeywordRanking(
-                                    keyword: json["ResultSet"]["0"]["Result"][String(i)]["Query"].stringValue,
-                                    ranking: json["ResultSet"]["0"]["Result"][String(i)]["_attributes"]["rank"].intValue))
+                                    keyword: json["keyword_ranking"]["ranking_data"][i]["query"].stringValue,
+                                    ranking: json["keyword_ranking"]["ranking_data"][i]["rank"].intValue))
                         }
                         subject.onNext(keywordList)
                         subject.onCompleted()
