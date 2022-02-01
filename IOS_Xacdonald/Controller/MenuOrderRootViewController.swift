@@ -46,6 +46,7 @@ class MenuOrderRootViewController: CVPVCViewControllerA {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         if menuOrderBottomView.getOrderCount() > 0 {
             pageViewControllerBottomAnchorParentViewBottom.isActive = false
             pageViewControllerBottomAnchorMenuOrderBottomViewTop.isActive = true
@@ -104,7 +105,7 @@ class MenuOrderRootViewController: CVPVCViewControllerA {
         menuOrderBottomView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
         menuOrderBottomView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
         menuOrderBottomView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
-        menuOrderBottomView
+        /*menuOrderBottomView
             .rx
             .tapGesture()
             .when(.recognized)
@@ -140,7 +141,7 @@ class MenuOrderRootViewController: CVPVCViewControllerA {
                         }
                     })
             })
-            .disposed(by: disposeBag)
+            .disposed(by: disposeBag)*/
         pageViewControllerBottomAnchorMenuOrderBottomViewTop = pageViewControllerBottomAnchor.constraint(equalTo: menuOrderBottomView.topAnchor)
         pageViewControllerBottomAnchorMenuOrderBottomViewTop.isActive = false
         pageViewControllerBottomAnchorParentViewBottom = pageViewControllerBottomAnchor.constraint(equalTo: view.bottomAnchor)
